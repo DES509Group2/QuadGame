@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 处理玩家移动 
 public class PlayerMovement : MonoBehaviour
 {
     private PhotonView PV;

@@ -1,3 +1,5 @@
+// 该类存储可选择的玩家预制体及已选择的预制体偏好
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,6 +31,7 @@ public class PlayerInfo : MonoBehaviour
 
     void Start()
     {
+        // PlayerPrefs 的值持久存在于本地
         if (PlayerPrefs.HasKey("MyCharacter"))
         {
             mySelectedCharacter = PlayerPrefs.GetInt("MyCharacter");

@@ -1971,7 +1971,6 @@ MonoBehaviour:
   currenScene: 0
   playersInRoom: 0
   myNumberInRoom: 0
-  playersInGame: 0
   menuUIThree: {fileID: 1542933101}
   menuUIFour: {fileID: 1018836351}
   playersPanel: {fileID: 1946111960}

@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: -7249817791916455915}
   - component: {fileID: -5052022979663366950}
   - component: {fileID: -5098428951818951863}
+  - component: {fileID: -1486265703163169052}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -258,3 +259,16 @@ MonoBehaviour:
   playerLength: 0
   myCamera: {fileID: 316836779183248203}
   myAL: {fileID: 2917724443235806363}
+--- !u!114 &-1486265703163169052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900431129065303902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa224c384d7f9646a2087d6a3ca450d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lengthDisplay: {fileID: 0}

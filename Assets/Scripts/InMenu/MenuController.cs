@@ -7,6 +7,7 @@ public class MenuController : MonoBehaviour
     public GameObject menuUIOne;
     public GameObject menuUITwo;
     public GameObject startButton;
+    public GameObject exitButton; 
 
     public void OnClickCharacterPick(int whichCharacter)
     {
@@ -24,5 +25,8 @@ public class MenuController : MonoBehaviour
         menuUITwo.SetActive(true); 
     }
 
-
+    public void OnExitButtonClicked()
+    {
+        Application.Quit(); 
+    }
 }

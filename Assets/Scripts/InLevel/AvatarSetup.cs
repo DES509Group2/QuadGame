@@ -12,7 +12,7 @@ public class AvatarSetup : MonoBehaviour
     public int playerLength; 
 
     public Camera myCamera;
-    public AudioListener myAL; 
+    public AudioListener myAL;
 
     void Start()
     {

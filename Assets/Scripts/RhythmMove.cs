@@ -5,6 +5,7 @@ using UnityEngine;
 public class RhythmMove : MonoBehaviour
 {
     private float startPositionX;
+    private float startPositionY;
     AudioSource audioData;
     [SerializeField]
     private float shotInterval;
@@ -12,6 +13,7 @@ public class RhythmMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startPositionY = transform.localPosition.y;
         initialSetting();
         audioData = GetComponent<AudioSource>();
     }
@@ -52,7 +54,7 @@ public class RhythmMove : MonoBehaviour
     {
         if(isMoving == false)
         {
-            transform.LeanMoveLocal(new Vector2(0, -148), shotInterval);
+            transform.LeanMoveLocal(new Vector2(0, startPositionY), shotInterval);
             isMoving = true;
         }
   

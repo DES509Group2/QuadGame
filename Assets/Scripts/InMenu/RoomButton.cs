@@ -1,3 +1,5 @@
+// 预制体按钮调用挂载于自身的脚本
+
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;

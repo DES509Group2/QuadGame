@@ -9,9 +9,13 @@ public class GameSetup : MonoBehaviour
 {
     public static GameSetup GS;
 
-    public Text lengthDisplay; 
+    public Text lengthDisplay;
 
-    public Transform[] spawnPoints;
+    public int nextPlayersTeam; 
+    public Transform[] spawnPointsTeamOne;
+    public Transform[] spawnPointsTeamTwo;
+    public Transform[] spawnPointsTeamThree;
+    public Transform[] spawnPointsTeamFour; 
 
     private void OnEnable()
     {
@@ -36,6 +40,18 @@ public class GameSetup : MonoBehaviour
             yield return null;
         PhotonNetwork.AutomaticallySyncScene = false;
         SceneManager.LoadScene(0); 
+    }
+
+    public void UpdateTeam()
+    {
+        if (nextPlayersTeam < 4)
+        {
+            nextPlayersTeam++; 
+        }
+        else
+        {
+            nextPlayersTeam = 1;
+        }
     }
 
 }

@@ -41,6 +41,10 @@ MonoBehaviour:
   - RespawnSpaceship
   - RPC_CreatePlayer
   - RPC_AddCharacter
+  - RPC_GetTeam
+  - RPC_SentTeam
+  - RPC_AddTail
+  - RPC_DestoryTail
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

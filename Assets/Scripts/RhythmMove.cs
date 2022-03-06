@@ -26,9 +26,10 @@ public class RhythmMove : MonoBehaviour
         }
         else if(transform.localPosition.x == 0)
         {
+            audioData.Play(0);
             transform.LeanSetLocalPosX(startPositionX);
             isMoving = false;
-            audioData.Play(0);
+
 
         }
         else

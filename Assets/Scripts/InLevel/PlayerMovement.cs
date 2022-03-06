@@ -1,6 +1,7 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 // 处理玩家移动 
@@ -150,49 +151,31 @@ public class PlayerMovement : MonoBehaviour
 
     void GetInput()
     {
+        if (!isTurn) return; 
+
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && dirY != -step)
         {
-            if (isTurn)
-            {
-                SetDirectionUp();
-                TailGrow(); 
-                isTurn = false;
-            }
-            else
-                turnTimer += moveInterval; 
+            SetDirectionUp();
+            TailGrow(); 
+            isTurn = false;
         }
         else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && dirX != step)
         {
-            if (isTurn)
-            {
-                SetDirectionLeft();
-                TailGrow();
-                isTurn = false;
-            }
-            else
-                turnTimer += moveInterval;
+            SetDirectionLeft();
+            TailGrow();
+            isTurn = false;
         }
         else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && dirY != step)
         {
-            if (isTurn)
-            {
-                SetDirectionDown(); 
-                TailGrow();
-                isTurn = false;
-            }
-            else
-                turnTimer += moveInterval;
+            SetDirectionDown(); 
+            TailGrow();
+            isTurn = false;
         }
         else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && dirX != -step)
         {
-            if (isTurn)
-            {
-                SetDirectionRight(); 
-                TailGrow();
-                isTurn = false;
-            }
-            else
-                turnTimer += moveInterval;
+            SetDirectionRight(); 
+            TailGrow();
+            isTurn = false; 
         }
     }
 
@@ -203,7 +186,8 @@ public class PlayerMovement : MonoBehaviour
             avatarSetup.playerLength--;
             if (avatarSetup.playerLength > 0)
             {
-                Destroy(tailsList[tailsList.Count - 1].gameObject);
+                // PV.RPC("RPC_DestoryTail", RpcTarget.All);
+                PhotonNetwork.Destroy(tailsList[tailsList.Count - 1].gameObject); 
                 tailsList.Remove(tailsList[tailsList.Count - 1]);
             }
             return; 
@@ -233,16 +217,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PV.IsMine)
         {
-            PV.RPC("RPC_AddTail", RpcTarget.AllBuffered, PlayerInfo.PI.mySelectedCharacter);
+            newTail = PhotonNetwork.Instantiate(Path.Combine("PhotonNetworkPrefabs", "Tail"), nextTailPos, Quaternion.identity, 0); 
+            avatarSetup.playerLength++; 
         }
         if (newTail)
             tailsList.Add(newTail.transform);
-    }
-
-    [PunRPC]
-    void RPC_AddTail(int whichTail)
-    {
-        newTail = Instantiate(PlayerInfo.PI.allCharacters[whichTail], nextTailPos, Quaternion.identity);
-        avatarSetup.playerLength++; 
     }
 }

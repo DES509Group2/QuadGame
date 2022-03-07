@@ -25,6 +25,7 @@ public class AvatarCombat : MonoBehaviour
             return; 
         }
 
-        lengthDisplay.text = avatarSetup.playerLength.ToString(); 
+        lengthDisplay.text = avatarSetup.playerLength.ToString();
+        GameSetup.GS.playerLength = avatarSetup.playerLength; 
     }
 }

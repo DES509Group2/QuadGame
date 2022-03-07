@@ -36,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
         avatarSetup = GetComponent<AvatarSetup>();
         sr = GetComponent<SpriteRenderer>(); 
 
-        avatarSetup.playerLength = 1; 
+        avatarSetup.playerLength = 1;
+
         SetRandomDirection();
         tailsList = new List<Transform>();
         TailGrow();

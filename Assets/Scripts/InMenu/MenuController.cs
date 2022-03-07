@@ -7,7 +7,6 @@ public class MenuController : MonoBehaviour
     public GameObject menuUIOne;
     public GameObject menuUITwo;
     public GameObject startButton;
-    public GameObject exitButton; 
 
     public void OnClickCharacterPick(int whichCharacter)
     {

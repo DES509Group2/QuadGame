@@ -6,7 +6,7 @@ public class RhythmMove : MonoBehaviour
 {
     private float startPositionX;
     private float startPositionY;
-    AudioSource audioData;
+    //AudioSource audioData;
     [SerializeField]
     private float shotInterval;
     private bool isMoving = false;
@@ -15,7 +15,7 @@ public class RhythmMove : MonoBehaviour
     {
         startPositionY = transform.localPosition.y;
         initialSetting();
-        audioData = GetComponent<AudioSource>();
+        //audioData = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class RhythmMove : MonoBehaviour
         }
         else if(transform.localPosition.x == 0)
         {
-            audioData.Play(0);
+            //audioData.Play(0);
             transform.LeanSetLocalPosX(startPositionX);
             isMoving = false;
 

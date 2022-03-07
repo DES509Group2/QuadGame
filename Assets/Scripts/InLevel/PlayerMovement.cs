@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask wall;
     private bool inCollision;
 
+    private AudioSource audioData;
+    public delegate void ScaleChangeAciton();
+    public static event ScaleChangeAciton scaleChange;
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -42,7 +45,9 @@ public class PlayerMovement : MonoBehaviour
         tailsList = new List<Transform>();
         TailGrow();
 
-        turnTimer = moveInterval; 
+        turnTimer = moveInterval;
+
+        audioData = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -150,24 +155,36 @@ public class PlayerMovement : MonoBehaviour
             SetDirectionUp();
             TailGrow(); 
             isTurn = false;
+            audioData.Play(0);
+            if (scaleChange != null)
+                scaleChange();
         }
         else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && dirX != step)
         {
             SetDirectionLeft();
             TailGrow();
             isTurn = false;
+            audioData.Play(0);
+            if (scaleChange != null)
+                scaleChange();
         }
         else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && dirY != step)
         {
             SetDirectionDown(); 
             TailGrow();
             isTurn = false;
+            audioData.Play(0);
+            if (scaleChange != null)
+                scaleChange();
         }
         else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && dirX != -step)
         {
             SetDirectionRight(); 
             TailGrow();
-            isTurn = false; 
+            isTurn = false;
+            audioData.Play(0);
+            if (scaleChange != null)
+                scaleChange();
         }
     }
 

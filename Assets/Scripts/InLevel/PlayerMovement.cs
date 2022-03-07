@@ -36,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
         avatarSetup = GetComponent<AvatarSetup>();
         sr = GetComponent<SpriteRenderer>(); 
 
-        avatarSetup.playerLength = 1; 
+        avatarSetup.playerLength = 1;
+
         SetRandomDirection();
         tailsList = new List<Transform>();
         TailGrow();
@@ -48,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!PV.IsMine) return;
 
-        CheckFail(); 
         CheckInCollision(); 
 
         if (isTurn)
@@ -58,14 +58,6 @@ public class PlayerMovement : MonoBehaviour
 
         GetInput();
         TurnTimer(); 
-    }
-
-    void CheckFail()
-    {
-        if (avatarSetup.playerLength <= 0)
-        {
-            // ++++++++++
-        }
     }
 
     void CheckInCollision()

@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!PV.IsMine) return;
 
-        CheckFail(); 
         CheckInCollision(); 
 
         if (isTurn)
@@ -58,14 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
         GetInput();
         TurnTimer(); 
-    }
-
-    void CheckFail()
-    {
-        if (avatarSetup.playerLength <= 0)
-        {
-            // ++++++++++
-        }
     }
 
     void CheckInCollision()

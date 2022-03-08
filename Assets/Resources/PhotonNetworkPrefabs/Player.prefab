@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3765848027432551210}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftCheck
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7105761722687144841}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightCheck
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4216779558452547078}
   - component: {fileID: 316836779183248203}
   - component: {fileID: 2917724443235806363}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5837701435070544523}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DownCheck
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: -5098428951818951863}
   - component: {fileID: -1486265703163169052}
   - component: {fileID: 4726520726156766244}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,6 +328,9 @@ MonoBehaviour:
   wall:
     serializedVersion: 2
     m_Bits: 8
+  player:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &-5098428951818951863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,7 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2072712543371679901}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UpCheck
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}

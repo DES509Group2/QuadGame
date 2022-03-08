@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform leftCheck;
     public Transform rightCheck;
     public LayerMask wall;
+    public LayerMask player; 
     private bool inCollision;
 
     private AudioSource audioData;
@@ -70,22 +71,22 @@ public class PlayerMovement : MonoBehaviour
         if (dirX > 0 && dirY == 0)
         {
             // Right 
-            inCollision = Physics2D.OverlapCircle(rightCheck.position, 0.2f, wall);
+            inCollision = Physics2D.OverlapCircle(rightCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(rightCheck.position, 0.2f, player);
         }
         else if (dirX < 0 && dirY == 0)
         {
             // Left
-            inCollision = Physics2D.OverlapCircle(leftCheck.position, 0.2f, wall);
+            inCollision = Physics2D.OverlapCircle(leftCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(leftCheck.position, 0.2f, player);
         }
         else if (dirX == 0 && dirY > 0)
         {
             // Up
-            inCollision = Physics2D.OverlapCircle(upCheck.position, 0.2f, wall); 
+            inCollision = Physics2D.OverlapCircle(upCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(upCheck.position, 0.2f, player);
         }
         else if (dirX == 0 && dirY < 0)
         {
             // Down 
-            inCollision = Physics2D.OverlapCircle(downCheck.position, 0.2f, wall); 
+            inCollision = Physics2D.OverlapCircle(downCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(downCheck.position, 0.2f, player);
         }
     }
 

@@ -10,6 +10,7 @@ public class GameSetup : MonoBehaviour
     public static GameSetup GS;
 
     public Text lengthDisplay;
+    public Text scoreDisplay; 
 
     public int nextPlayersTeam; 
     public Transform[] spawnPointsTeamOne;
@@ -18,6 +19,7 @@ public class GameSetup : MonoBehaviour
     public Transform[] spawnPointsTeamFour;
 
     public int playerLength;
+    public int playerScore; 
 
     public GameObject GameEndUIOne;
     public GameObject GameEndUITwo;
@@ -38,12 +40,19 @@ public class GameSetup : MonoBehaviour
 
     private void Start()
     {
-        playerLength = 1; 
+        playerLength = 1;
+        playerScore = 0; 
     }
 
     private void Update()
     {
-        CheckGameFailed(); 
+        CheckGameFailed();
+        RefreshScore(); 
+    }
+
+    void RefreshScore()
+    {
+        scoreDisplay.text = playerScore.ToString(); 
     }
 
     public void OnClickEndOneToTwo()

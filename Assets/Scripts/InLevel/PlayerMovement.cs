@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource audioData;
     public delegate void ScaleChangeAciton();
     public static event ScaleChangeAciton scaleChange;
+
+    [SerializeField] 
+    private int playerIndex; 
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -49,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
         turnTimer = moveInterval;
 
         audioData = GetComponent<AudioSource>();
+
+        if (PV.IsMine)
+        {
+            playerIndex = PlayerInfo.PI.mySelectedCharacter; 
+        }
     }
 
     void Update()
@@ -232,5 +240,17 @@ public class PlayerMovement : MonoBehaviour
         }
         if (newTail)
             tailsList.Add(newTail.transform);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("picking Orb" + playerIndex);
+
+        if (collision.tag == "Orb" + playerIndex)
+        {
+            Debug.Log("picked Orb" + playerIndex); 
+
+            Destroy(collision.gameObject); 
+        }
     }
 }

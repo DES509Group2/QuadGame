@@ -248,9 +248,45 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.tag == "Orb" + playerIndex)
         {
-            Debug.Log("picked Orb" + playerIndex); 
+            Debug.Log("picked Orb" + playerIndex);
 
-            Destroy(collision.gameObject); 
+            collision.gameObject.GetComponent<CircleCollider2D>().enabled = false; 
+            // Physics2D.IgnoreCollision(collision, GetComponent<CircleCollider2D>()); 
+
+            AddScore(); 
+            if (PV.IsMine) // Destroy(collision.gameObject);
+            {
+                PV.RPC("RPC_DestroyOrb", RpcTarget.All, collision.tag, transform.position);  
+            }
+        }
+    }
+
+    void AddScore()
+    {
+        if (PV.IsMine)
+        {
+            GameSetup.GS.playerScore++; 
+            PV.RPC("RPC_GroupScorePlus", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    void RPC_GroupScorePlus()
+    {
+        GameSetup.GS.groupScore++; 
+    }
+
+    [PunRPC]
+    void RPC_DestroyOrb(string orbTag, Vector3 pos)
+    {
+        GameObject[] orbs = GameObject.FindGameObjectsWithTag(orbTag);
+
+        foreach (GameObject orb in orbs)
+        {
+            if (orb.transform.position.x == pos.x && orb.transform.position.y == pos.y)
+            {
+                Destroy(orb); 
+            }
         }
     }
 }

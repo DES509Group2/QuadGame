@@ -259,6 +259,11 @@ public class PlayerMovement : MonoBehaviour
                 PV.RPC("RPC_DestroyOrb", RpcTarget.All, collision.tag, transform.position);  
             }
         }
+
+        if (collision.tag == "Door" + playerIndex)
+        {
+            GameSetup.GS.CheckGameWin(); 
+        }
     }
 
     void AddScore()

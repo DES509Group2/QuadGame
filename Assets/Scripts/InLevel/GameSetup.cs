@@ -21,7 +21,8 @@ public class GameSetup : MonoBehaviour
 
     public int playerLength;
     public int playerScore;
-    public int groupScore; 
+    public int groupScore;
+    public int winScore;
 
     public GameObject GameEndUIOne;
     public GameObject GameEndUITwo;
@@ -93,6 +94,14 @@ public class GameSetup : MonoBehaviour
         if (playerLength <= 0)
         {
             GameEndUI.SetActive(true); 
+        }
+    }
+
+    public void CheckGameWin() 
+    {
+        if (groupScore >= winScore)
+        {
+            GameWinUI.SetActive(true); 
         }
     }
 

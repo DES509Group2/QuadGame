@@ -2963,7 +2963,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 286484813}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1238497849}
+        m_TargetAssemblyTypeName: GameSetup, Assembly-CSharp
+        m_MethodName: OnClickWinThreeToNextLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &286484813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3350,7 +3362,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 377892081}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1238497849}
+        m_TargetAssemblyTypeName: GameSetup, Assembly-CSharp
+        m_MethodName: OnClickWinOneToTwo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &377892081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3930,7 +3954,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 466256185}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1238497849}
+        m_TargetAssemblyTypeName: GameSetup, Assembly-CSharp
+        m_MethodName: OnClickWinTwoToThree
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &466256185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8358,6 +8394,7 @@ MonoBehaviour:
   playerLength: 0
   playerScore: 0
   groupScore: 0
+  winScore: 3
   GameEndUIOne: {fileID: 844932391}
   GameEndUITwo: {fileID: 803185501}
   GameEndUIThree: {fileID: 1166358287}

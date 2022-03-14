@@ -23,6 +23,9 @@ public class GameSetup : MonoBehaviour
     public int playerScore;
     public int groupScore;
     public int winScore;
+    public int levelIndex;
+    public int maxPlayerLength;
+    public int maxCombo; 
 
     public GameObject GameEndUIOne;
     public GameObject GameEndUITwo;
@@ -44,14 +47,25 @@ public class GameSetup : MonoBehaviour
     private void Start()
     {
         playerLength = 1;
+        maxPlayerLength = 1; 
         playerScore = 0;
-        groupScore = 0; 
+        groupScore = 0;
+        levelIndex = SceneManager.GetActiveScene().buildIndex; 
     }
 
     private void Update()
     {
         CheckGameFailed();
-        RefreshScore(); 
+        RefreshScore();
+        RefreshMax();
+    }
+
+    void RefreshMax()
+    {
+        if (playerLength > maxPlayerLength)
+        {
+            maxPlayerLength = playerLength; 
+        }
     }
 
     void RefreshScore()

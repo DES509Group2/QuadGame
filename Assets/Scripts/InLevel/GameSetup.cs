@@ -25,7 +25,6 @@ public class GameSetup : MonoBehaviour
     public int winScore;
     public int levelIndex;
     public int maxPlayerLength;
-    public int maxCombo; 
 
     public GameObject GameEndUIOne;
     public GameObject GameEndUITwo;
@@ -35,6 +34,16 @@ public class GameSetup : MonoBehaviour
     public GameObject GameWinUIThree;
     public GameObject GameEndUI;
     public GameObject GameWinUI;
+
+    public GameObject ComboUI;
+    public int currentCombo;
+    public int maxCombo;
+
+    private float survivalTime;
+    private bool isTimeFly;
+
+    public int[] allPlayerScore;
+    public int[] otherPlayerScore; 
 
     private void OnEnable()
     {
@@ -47,17 +56,29 @@ public class GameSetup : MonoBehaviour
     private void Start()
     {
         playerLength = 1;
-        maxPlayerLength = 1; 
+        maxPlayerLength = 1;
         playerScore = 0;
         groupScore = 0;
-        levelIndex = SceneManager.GetActiveScene().buildIndex; 
+        levelIndex = SceneManager.GetActiveScene().buildIndex;
+
+        currentCombo = 0;
+        maxCombo = 0;
+
+        survivalTime = 0;
+        isTimeFly = true;
+
+        allPlayerScore = new int [4] { 0, 0, 0, 0 };
+        otherPlayerScore = new int[3] { 0, 0, 0 }; 
     }
 
     private void Update()
     {
+        if (isTimeFly)
+            survivalTime += Time.deltaTime;
+        
         CheckGameFailed();
         RefreshScore();
-        RefreshMax();
+        RefreshMax(); 
     }
 
     void RefreshMax()
@@ -66,12 +87,32 @@ public class GameSetup : MonoBehaviour
         {
             maxPlayerLength = playerLength; 
         }
+
+        if (currentCombo > maxCombo)
+        {
+            maxCombo = currentCombo; 
+        }
     }
 
     void RefreshScore()
     {
         scoreDisplay.text = playerScore.ToString();
         groupScoreDisplay.text = groupScore.ToString();
+        RefreshOtherPlayerScore(); 
+    }
+
+    void RefreshOtherPlayerScore()
+    {
+        int tempIndex = PlayerInfo.PI.mySelectedCharacter;
+        int j = 0; 
+        for (int i = 0; i < 4; i++)
+        {
+           if (i != tempIndex)
+            {
+                otherPlayerScore[j] = allPlayerScore[i];
+                j++; 
+            }
+        }
     }
 
     public void OnClickEndOneToTwo()
@@ -107,7 +148,8 @@ public class GameSetup : MonoBehaviour
     {
         if (playerLength <= 0)
         {
-            GameEndUI.SetActive(true); 
+            GameEndUI.SetActive(true);
+            isTimeFly = false;
         }
     }
 
@@ -115,7 +157,8 @@ public class GameSetup : MonoBehaviour
     {
         if (groupScore >= winScore)
         {
-            GameWinUI.SetActive(true); 
+            GameWinUI.SetActive(true);
+            isTimeFly = false;
         }
     }
 
@@ -146,6 +189,22 @@ public class GameSetup : MonoBehaviour
         {
             nextPlayersTeam = 1;
         }
+    }
+
+    public void PlayCombo()
+    {
+        currentCombo++; 
+        ComboUI.SetActive(true); 
+    }
+
+    public string GetSurvivalTime()
+    {
+        int hour = (int)survivalTime / 3600;
+        int minute = (int)(survivalTime - hour * 3600) / 60;
+        int second = (int)(survivalTime - hour * 3600 - minute * 60);
+        int millisecond = (int)((survivalTime - (int)survivalTime) * 1000);
+
+        return string.Format("{0:D2}:{1:D2}:{2:D2}", minute, second, millisecond); 
     }
 
 }

@@ -36,7 +36,10 @@ public class PlayerMovement : MonoBehaviour
     public static event ScaleChangeAciton scaleChange;
 
     [SerializeField] 
-    private int playerIndex; 
+    private int playerIndex;
+
+    private int pressCounter;
+
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -57,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
         {
             playerIndex = PlayerInfo.PI.mySelectedCharacter; 
         }
+
+        pressCounter = 0;
     }
 
     void Update()
@@ -106,7 +111,9 @@ public class PlayerMovement : MonoBehaviour
             isTurn = false;
             turnTimer = moveInterval;
 
-            BasicMovement(); 
+            BasicMovement();
+
+            pressCounter = 0; 
         }
         else if (turnTimer < turnInterval)
         {
@@ -157,43 +164,80 @@ public class PlayerMovement : MonoBehaviour
 
     void GetInput()
     {
-        if (!isTurn) return; 
+        // if (!isTurn) return;
+        if (pressCounter >= 3) return; 
 
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && dirY != -step)
         {
-            SetDirectionUp();
-            TailGrow(); 
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionUp();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0; 
+            }
         }
         else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && dirX != step)
         {
-            SetDirectionLeft();
-            TailGrow();
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionLeft();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0; 
+            }
         }
         else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && dirY != step)
         {
-            SetDirectionDown(); 
-            TailGrow();
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionDown();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0;
+            }
         }
         else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && dirX != -step)
         {
-            SetDirectionRight(); 
-            TailGrow();
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionRight();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0; 
+            }
         }
     }
 
@@ -270,9 +314,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PV.IsMine)
         {
-            GameSetup.GS.playerScore++; 
+            GameSetup.GS.playerScore++;
+            int tempIndex = playerIndex; 
+            int tempScore = GameSetup.GS.playerScore; 
+            PV.RPC("RPC_AllScorePlus", RpcTarget.All, tempIndex, tempScore); 
             PV.RPC("RPC_GroupScorePlus", RpcTarget.All);
         }
+    }
+
+    [PunRPC]
+    void RPC_AllScorePlus(int index, int score)
+    {
+        GameSetup.GS.allPlayerScore[index] = score;  
     }
 
     [PunRPC]

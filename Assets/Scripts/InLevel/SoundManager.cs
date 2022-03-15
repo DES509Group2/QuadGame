@@ -9,6 +9,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
     [SerializeField]
+    private AudioSource supportAudioSounce; 
+    [SerializeField]
     private AudioClip beatPlayer1, beatPlayer2, beatPlayer3, beatPlayer4;
     [SerializeField]
     private AudioClip tailIncrease, tailDecrease;
@@ -43,14 +45,14 @@ public class SoundManager : MonoBehaviour
 
     public void PlayTailIncrease()
     {
-        audioSource.clip = tailIncrease;
-        audioSource.Play(); 
+        supportAudioSounce.clip = tailIncrease;
+        supportAudioSounce.Play(); 
     }
     
     public void PlayTailDecrease()
     {
-        audioSource.clip = tailDecrease;
-        audioSource.Play(); 
+        supportAudioSounce.clip = tailDecrease;
+        supportAudioSounce.Play();  
     }
 
 }

@@ -279,6 +279,7 @@ public class PlayerMovement : MonoBehaviour
                 // PV.RPC("RPC_DestoryTail", RpcTarget.All);
                 PhotonNetwork.Destroy(tailsList[tailsList.Count - 1].gameObject); 
                 tailsList.Remove(tailsList[tailsList.Count - 1]);
+                SoundManager.SM.PlayTailDecrease(); 
             }
             return; 
         } 
@@ -308,10 +309,13 @@ public class PlayerMovement : MonoBehaviour
         if (PV.IsMine)
         {
             newTail = PhotonNetwork.Instantiate(Path.Combine("PhotonNetworkPrefabs", "Tail"), nextTailPos, Quaternion.identity, 0); 
-            avatarSetup.playerLength++; 
+            avatarSetup.playerLength++;
         }
         if (newTail)
+        {
             tailsList.Add(newTail.transform);
+            SoundManager.SM.PlayTailIncrease();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -328,7 +332,7 @@ public class PlayerMovement : MonoBehaviour
             AddScore(); 
             if (PV.IsMine) // Destroy(collision.gameObject);
             {
-                PV.RPC("RPC_DestroyOrb", RpcTarget.All, collision.tag, transform.position);  
+                PV.RPC("RPC_DestroyOrb", RpcTarget.All, collision.tag, transform.position);
             }
         }
 

@@ -175,7 +175,8 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionUp();
                 TailGrow();
                 isTurn = false;
-                audioData.Play(0);
+                // audioData.Play(0);
+                PlayPlayerBeat(); 
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -193,7 +194,8 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionLeft();
                 TailGrow();
                 isTurn = false;
-                audioData.Play(0);
+                // audioData.Play(0);
+                PlayPlayerBeat();
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -211,7 +213,8 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionDown();
                 TailGrow();
                 isTurn = false;
-                audioData.Play(0);
+                // audioData.Play(0);
+                PlayPlayerBeat();
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -229,7 +232,8 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionRight();
                 TailGrow();
                 isTurn = false;
-                audioData.Play(0);
+                // audioData.Play(0);
+                PlayPlayerBeat();
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -238,6 +242,30 @@ public class PlayerMovement : MonoBehaviour
             {
                 GameSetup.GS.currentCombo = 0; 
             }
+        }
+    }
+
+    void PlayPlayerBeat()
+    {
+        if (playerIndex == 0)
+        {
+            // audioData.Play(0);
+            SoundManager.SM.PlayBeatOne(); 
+        }
+        else if (playerIndex == 1)
+        {
+            // audioData.Play(0);
+            SoundManager.SM.PlayBeatTwo(); 
+        }
+        else if (playerIndex == 2)
+        {
+            // audioData.Play(0);
+            SoundManager.SM.PlayBeatThree(); 
+        }
+        else if (playerIndex == 3)
+        {
+            // audioData.Play(0);
+            SoundManager.SM.PlayBeatFour(); 
         }
     }
 

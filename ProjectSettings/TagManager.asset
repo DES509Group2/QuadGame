@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Orb0
+  - Orb1
+  - Orb2
+  - Orb3
+  - Door0
+  - Door1
+  - Door2
+  - Door3
   layers:
   - Default
   - TransparentFX
@@ -11,7 +19,7 @@ TagManager:
   - Wall
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

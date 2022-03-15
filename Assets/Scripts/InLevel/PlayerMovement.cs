@@ -28,11 +28,18 @@ public class PlayerMovement : MonoBehaviour
     public Transform leftCheck;
     public Transform rightCheck;
     public LayerMask wall;
+    public LayerMask player; 
     private bool inCollision;
 
     private AudioSource audioData;
     public delegate void ScaleChangeAciton();
     public static event ScaleChangeAciton scaleChange;
+
+    [SerializeField] 
+    private int playerIndex;
+
+    private int pressCounter;
+
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -48,6 +55,13 @@ public class PlayerMovement : MonoBehaviour
         turnTimer = moveInterval;
 
         audioData = GetComponent<AudioSource>();
+
+        if (PV.IsMine)
+        {
+            playerIndex = PlayerInfo.PI.mySelectedCharacter; 
+        }
+
+        pressCounter = 0;
     }
 
     void Update()
@@ -70,22 +84,22 @@ public class PlayerMovement : MonoBehaviour
         if (dirX > 0 && dirY == 0)
         {
             // Right 
-            inCollision = Physics2D.OverlapCircle(rightCheck.position, 0.2f, wall);
+            inCollision = Physics2D.OverlapCircle(rightCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(rightCheck.position, 0.2f, player);
         }
         else if (dirX < 0 && dirY == 0)
         {
             // Left
-            inCollision = Physics2D.OverlapCircle(leftCheck.position, 0.2f, wall);
+            inCollision = Physics2D.OverlapCircle(leftCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(leftCheck.position, 0.2f, player);
         }
         else if (dirX == 0 && dirY > 0)
         {
             // Up
-            inCollision = Physics2D.OverlapCircle(upCheck.position, 0.2f, wall); 
+            inCollision = Physics2D.OverlapCircle(upCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(upCheck.position, 0.2f, player);
         }
         else if (dirX == 0 && dirY < 0)
         {
             // Down 
-            inCollision = Physics2D.OverlapCircle(downCheck.position, 0.2f, wall); 
+            inCollision = Physics2D.OverlapCircle(downCheck.position, 0.2f, wall) || Physics2D.OverlapCircle(downCheck.position, 0.2f, player);
         }
     }
 
@@ -97,7 +111,9 @@ public class PlayerMovement : MonoBehaviour
             isTurn = false;
             turnTimer = moveInterval;
 
-            BasicMovement(); 
+            BasicMovement();
+
+            pressCounter = 0; 
         }
         else if (turnTimer < turnInterval)
         {
@@ -148,43 +164,80 @@ public class PlayerMovement : MonoBehaviour
 
     void GetInput()
     {
-        if (!isTurn) return; 
+        // if (!isTurn) return;
+        if (pressCounter >= 3) return; 
 
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && dirY != -step)
         {
-            SetDirectionUp();
-            TailGrow(); 
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionUp();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0; 
+            }
         }
         else if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && dirX != step)
         {
-            SetDirectionLeft();
-            TailGrow();
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionLeft();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0; 
+            }
         }
         else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && dirY != step)
         {
-            SetDirectionDown(); 
-            TailGrow();
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionDown();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0;
+            }
         }
         else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && dirX != -step)
         {
-            SetDirectionRight(); 
-            TailGrow();
-            isTurn = false;
-            audioData.Play(0);
-            if (scaleChange != null)
-                scaleChange();
+            pressCounter++;
+            if (isTurn)
+            {
+                SetDirectionRight();
+                TailGrow();
+                isTurn = false;
+                audioData.Play(0);
+                if (scaleChange != null)
+                    scaleChange();
+                GameSetup.GS.PlayCombo(); 
+            }
+            else
+            {
+                GameSetup.GS.currentCombo = 0; 
+            }
         }
     }
 
@@ -231,5 +284,67 @@ public class PlayerMovement : MonoBehaviour
         }
         if (newTail)
             tailsList.Add(newTail.transform);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("picking Orb" + playerIndex);
+
+        if (collision.tag == "Orb" + playerIndex)
+        {
+            Debug.Log("picked Orb" + playerIndex);
+
+            collision.gameObject.GetComponent<CircleCollider2D>().enabled = false; 
+            // Physics2D.IgnoreCollision(collision, GetComponent<CircleCollider2D>()); 
+
+            AddScore(); 
+            if (PV.IsMine) // Destroy(collision.gameObject);
+            {
+                PV.RPC("RPC_DestroyOrb", RpcTarget.All, collision.tag, transform.position);  
+            }
+        }
+
+        if (collision.tag == "Door" + playerIndex)
+        {
+            GameSetup.GS.CheckGameWin(); 
+        }
+    }
+
+    void AddScore()
+    {
+        if (PV.IsMine)
+        {
+            GameSetup.GS.playerScore++;
+            int tempIndex = playerIndex; 
+            int tempScore = GameSetup.GS.playerScore; 
+            PV.RPC("RPC_AllScorePlus", RpcTarget.All, tempIndex, tempScore); 
+            PV.RPC("RPC_GroupScorePlus", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    void RPC_AllScorePlus(int index, int score)
+    {
+        GameSetup.GS.allPlayerScore[index] = score;  
+    }
+
+    [PunRPC]
+    void RPC_GroupScorePlus()
+    {
+        GameSetup.GS.groupScore++; 
+    }
+
+    [PunRPC]
+    void RPC_DestroyOrb(string orbTag, Vector3 pos)
+    {
+        GameObject[] orbs = GameObject.FindGameObjectsWithTag(orbTag);
+
+        foreach (GameObject orb in orbs)
+        {
+            if (orb.transform.position.x == pos.x && orb.transform.position.y == pos.y)
+            {
+                Destroy(orb); 
+            }
+        }
     }
 }

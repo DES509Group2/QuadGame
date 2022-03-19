@@ -352,8 +352,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.tag == "Door" + playerIndex)
         {
-            GameSetup.GS.CheckGameWin(); 
+            if (PV.IsMine)
+            {
+                PV.RPC("RPC_CheckWin", RpcTarget.All); 
+            }
         }
+    }
+
+    [PunRPC]
+    void RPC_CheckWin()
+    {
+        GameSetup.GS.CheckGameWin(); 
     }
 
     void AddScore()

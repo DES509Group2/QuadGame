@@ -49,6 +49,7 @@ MonoBehaviour:
   - RPC_DestroyOrb
   - RPC_AllScorePlus
   - RPC_AddFailedPlayer
+  - RPC_CheckWin
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

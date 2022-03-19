@@ -277,9 +277,17 @@ public class PlayerMovement : MonoBehaviour
             if (avatarSetup.playerLength > 0)
             {
                 // PV.RPC("RPC_DestoryTail", RpcTarget.All);
-                PhotonNetwork.Destroy(tailsList[tailsList.Count - 1].gameObject); 
+                PhotonNetwork.Destroy(tailsList[tailsList.Count - 1].gameObject);
                 tailsList.Remove(tailsList[tailsList.Count - 1]);
-                SoundManager.SM.PlayTailDecrease(); 
+                SoundManager.SM.PlayTailDecrease();
+            }
+            else
+            {
+                if (PV.IsMine)
+                {
+                    PV.RPC("RPC_AddFailedPlayer", RpcTarget.All);
+                    PhotonNetwork.Destroy(gameObject);
+                }
             }
             return; 
         } 
@@ -287,6 +295,12 @@ public class PlayerMovement : MonoBehaviour
         lastHeadPos = transform.localPosition;
         TailsMove();
         transform.localPosition = new Vector3(lastHeadPos.x + dirX, lastHeadPos.y + dirY, lastHeadPos.z);
+    }
+
+    [PunRPC]
+    void RPC_AddFailedPlayer()
+    {
+        GameSetup.GS.failedPlayers++; 
     }
 
     void TailsMove()

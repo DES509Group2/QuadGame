@@ -43,7 +43,9 @@ public class GameSetup : MonoBehaviour
     private bool isTimeFly;
 
     public int[] allPlayerScore;
-    public int[] otherPlayerScore; 
+    public int[] otherPlayerScore;
+
+    public int failedPlayers;
 
     private void OnEnable()
     {
@@ -68,7 +70,9 @@ public class GameSetup : MonoBehaviour
         isTimeFly = true;
 
         allPlayerScore = new int [4] { 0, 0, 0, 0 };
-        otherPlayerScore = new int[3] { 0, 0, 0 }; 
+        otherPlayerScore = new int[3] { 0, 0, 0 };
+
+        failedPlayers = 0;
     }
 
     private void Update()
@@ -146,7 +150,7 @@ public class GameSetup : MonoBehaviour
 
     void CheckGameFailed()
     {
-        if (playerLength <= 0)
+        if (failedPlayers == 4)
         {
             GameEndUI.SetActive(true);
             isTimeFly = false;

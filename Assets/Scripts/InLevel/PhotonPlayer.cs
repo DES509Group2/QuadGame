@@ -8,10 +8,13 @@ public class PhotonPlayer : MonoBehaviour
 {
     public PhotonView PV;
     public GameObject myAvatar;
-    public int myTeam; 
+    public int myTeam;
+
+    private bool firstSpawn; 
 
     void Start()
     {
+        firstSpawn = true; 
         PV = GetComponent<PhotonView>();
         if (PV.IsMine)
         {
@@ -21,7 +24,7 @@ public class PhotonPlayer : MonoBehaviour
 
     void Update()
     {
-        if (myAvatar == null && myTeam != 0)
+        if (firstSpawn && myAvatar == null && myTeam != 0)
         {
             if (myTeam == 1)
             {
@@ -30,6 +33,7 @@ public class PhotonPlayer : MonoBehaviour
                 {
                     myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonNetworkPrefabs", "Player"),
                         GameSetup.GS.spawnPointsTeamOne[spawnPicker].position, GameSetup.GS.spawnPointsTeamOne[spawnPicker].rotation, 0);
+                    firstSpawn = false; 
                 }
             }
             if (myTeam == 2)
@@ -39,6 +43,7 @@ public class PhotonPlayer : MonoBehaviour
                 {
                     myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonNetworkPrefabs", "Player"),
                         GameSetup.GS.spawnPointsTeamTwo[spawnPicker].position, GameSetup.GS.spawnPointsTeamTwo[spawnPicker].rotation, 0);
+                    firstSpawn = false; 
                 }
             }
             if (myTeam == 3)
@@ -48,6 +53,7 @@ public class PhotonPlayer : MonoBehaviour
                 {
                     myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonNetworkPrefabs", "Player"),
                         GameSetup.GS.spawnPointsTeamThree[spawnPicker].position, GameSetup.GS.spawnPointsTeamThree[spawnPicker].rotation, 0);
+                    firstSpawn = false; 
                 }
             }
             if (myTeam == 4)
@@ -57,6 +63,7 @@ public class PhotonPlayer : MonoBehaviour
                 {
                     myAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonNetworkPrefabs", "Player"),
                         GameSetup.GS.spawnPointsTeamFour[spawnPicker].position, GameSetup.GS.spawnPointsTeamFour[spawnPicker].rotation, 0);
+                    firstSpawn = false; 
                 }
             }
         }

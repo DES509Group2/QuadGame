@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
+    public static MenuController MC;
+
     public GameObject menuUIOne;
     public GameObject menuUITwo;
     public GameObject menuUIThree; 
@@ -11,8 +14,46 @@ public class MenuController : MonoBehaviour
 
     public GameObject changeNameButton;
     public GameObject openCreateRoomButton;
-    public GameObject createRoomPanel; 
-    
+    public GameObject createRoomPanel;
+
+    public bool isReady;
+    public int playersIndex;
+    public int[] isChecked;
+
+    public Text readyPlayers; 
+
+    private void OnEnable()
+    {
+        if (MenuController.MC == null)
+        {
+            MenuController.MC = this; 
+        }
+    }
+
+    private void Start()
+    {
+        isReady = false;
+        isChecked = new int [4] { 0, 0, 0, 0 };
+    }
+
+    private void Update()
+    {
+        RefreshReadyPlayers(); 
+    }
+
+    void RefreshReadyPlayers()
+    {
+        int readys = 0; 
+        for (int i = 0; i < 4; i++)
+        {
+            if (isChecked[i] == 1)
+            {
+                readys++; 
+            }
+        }
+        readyPlayers.text = readys.ToString(); 
+    }
+
     public void OnClickChangeName()
     {
         menuUIThree.SetActive(false); 
@@ -34,7 +75,9 @@ public class MenuController : MonoBehaviour
         if (PlayerInfo.PI != null)
         {
             PlayerInfo.PI.mySelectedCharacter = whichCharacter;
-            PlayerPrefs.SetInt("MyCharacter", whichCharacter); 
+            PlayerPrefs.SetInt("MyCharacter", whichCharacter);
+
+            PhotonRoom.room.ChangeListColor(PhotonRoom.room.myNumberInRoom - 1, whichCharacter); 
         }
     }
 

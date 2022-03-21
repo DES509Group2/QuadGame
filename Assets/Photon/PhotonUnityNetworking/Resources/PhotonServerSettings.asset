@@ -50,6 +50,9 @@ MonoBehaviour:
   - RPC_AllScorePlus
   - RPC_AddFailedPlayer
   - RPC_CheckWin
+  - RPC_ChangeListColor
+  - RPC_CheckBoxFalse
+  - RPC_CheckBoxTrue
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

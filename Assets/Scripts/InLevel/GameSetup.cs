@@ -150,7 +150,7 @@ public class GameSetup : MonoBehaviour
 
     void CheckGameFailed()
     {
-        if (failedPlayers == 4)
+        if (failedPlayers == PhotonNetwork.PlayerList.Length) 
         {
             GameEndUI.SetActive(true);
             isTimeFly = false;

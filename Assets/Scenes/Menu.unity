@@ -459,10 +459,10 @@ RectTransform:
   m_Father: {fileID: 2141352541}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 75, y: -75}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &145444984
 MonoBehaviour:
@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 169715081}
   - component: {fileID: 169715080}
   - component: {fileID: 169715079}
+  - component: {fileID: 169715082}
   m_Layer: 5
   m_Name: ReadyButton
   m_TagString: Untagged
@@ -641,9 +642,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1103498584}
-        m_TargetAssemblyTypeName: PhotonRoom, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 169715082}
+        m_TargetAssemblyTypeName: ReadyButton, Assembly-CSharp
+        m_MethodName: OnClickReady
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -691,6 +692,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169715077}
   m_CullTransparentMesh: 1
+--- !u!114 &169715082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169715077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970241d4e1224af4486c6939abd656bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &214755856
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +898,10 @@ MonoBehaviour:
   changeNameButton: {fileID: 916772481}
   openCreateRoomButton: {fileID: 118539894}
   createRoomPanel: {fileID: 1971260914}
+  isReady: 0
+  playersIndex: 0
+  isChecked: 
+  readyPlayers: {fileID: 1892479740}
 --- !u!4 &241813289
 Transform:
   m_ObjectHideFlags: 0
@@ -993,7 +1010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &299891233
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1795,10 +1812,10 @@ RectTransform:
   m_Father: {fileID: 2141352541}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 225, y: -75}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654663924
 MonoBehaviour:
@@ -3062,7 +3079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1018836352
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3119,6 +3136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dee63e07d8dcb834c9a02a4126304d25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PV: {fileID: 0}
   isGameLoaded: 0
   currenScene: 0
   playersInRoom: 0
@@ -3128,6 +3146,10 @@ MonoBehaviour:
   playersPanel: {fileID: 1946111960}
   playerListingPrefab: {fileID: 2396709171277276029, guid: 2bad4fcd722fab74f9f7e5bb7af14a7d, type: 3}
   playButton: {fileID: 1950204874}
+  playersList: []
+  readyButton: {fileID: 169715077}
+  ListIndex: 0
+  totalPlayers: {fileID: 1692509618}
 --- !u!114 &1103498585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3330,6 +3352,7 @@ MonoBehaviour:
   maxRoomSize: 4
   roomListingPrefab: {fileID: 3565016907685176285, guid: 5c87f4ffa8b429d4b8579fec6c8f5d71, type: 3}
   roomsPanel: {fileID: 1716807706}
+  userNameText: {fileID: 1626854353}
 --- !u!4 &1268833607
 Transform:
   m_ObjectHideFlags: 0
@@ -5860,10 +5883,10 @@ RectTransform:
   m_Father: {fileID: 2141352541}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 525, y: -75}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2093439022
 MonoBehaviour:
@@ -6113,10 +6136,10 @@ RectTransform:
   m_Father: {fileID: 2141352541}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 375, y: -75}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121236284
 MonoBehaviour:

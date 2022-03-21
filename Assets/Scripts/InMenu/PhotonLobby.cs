@@ -3,6 +3,7 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
 {
@@ -20,6 +21,8 @@ public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public Transform roomsPanel;
 
     public List<RoomInfo> roomListings;
+
+    public Text userNameText; 
 
     private void Awake()
     {
@@ -135,7 +138,9 @@ public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
         menuUITwo.SetActive(false);
         menuUIThree.SetActive(true);
         PhotonNetwork.NickName = nickName;
-        Debug.Log("Player: " + PhotonNetwork.NickName); 
+        userNameText.text = nickName; 
+        Debug.Log("Player: " + PhotonNetwork.NickName);
+        JoinLobbyOnClick(); 
     }
 
 }

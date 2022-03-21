@@ -11,7 +11,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 {
     // Room Info
     public static PhotonRoom room;
-    private PhotonView PV; 
+    public PhotonView PV; 
 
     public bool isGameLoaded;
     public int currenScene;
@@ -26,6 +26,14 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     public Transform playersPanel;
     public GameObject playerListingPrefab;
     public GameObject playButton;
+
+    // public bool isReady;
+    public List<GameObject> playersList; 
+    public GameObject readyButton;
+
+    public int ListIndex;
+
+    public Text totalPlayers; 
 
     private void Awake()
     {
@@ -63,7 +71,21 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     void Start()
     {
         // set private variable
-        PV = GetComponent<PhotonView>(); 
+        PV = GetComponent<PhotonView>();
+
+        // isReady = false; 
+    }
+
+    private void Update()
+    {
+        if (MenuController.MC.isReady)
+        {
+            readyButton.SetActive(false);
+        }
+        else
+        {
+            readyButton.SetActive(true); 
+        }
     }
 
     public override void OnJoinedRoom()
@@ -79,12 +101,15 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
             playButton.SetActive(true); 
         }
 
+        photonPlayers = PhotonNetwork.PlayerList;
+        playersInRoom = photonPlayers.Length;
+        myNumberInRoom = playersInRoom;
+
+        MenuController.MC.playersIndex = myNumberInRoom - 1; 
+
         ClearPlayerListings();
         ListPlayers();
 
-        photonPlayers = PhotonNetwork.PlayerList;
-        playersInRoom = photonPlayers.Length;
-        myNumberInRoom = playersInRoom; 
     }
 
     void ClearPlayerListings()
@@ -93,18 +118,24 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         {
             Destroy(playersPanel.GetChild(i).gameObject); 
         }
+
+        playersList.Clear(); 
     }
 
     void ListPlayers()
     {
         if (PhotonNetwork.InRoom)
         {
+            ListIndex = 0;
             foreach (Player player in PhotonNetwork.PlayerList)
             {
                 GameObject tempListing = Instantiate(playerListingPrefab, playersPanel);
                 Text tempText = tempListing.transform.GetChild(0).GetComponent<Text>();
-                tempText.text = player.NickName; 
+                tempText.text = player.NickName;
+                playersList.Add(tempListing);
             }
+            ChangeListColor(myNumberInRoom - 1, PlayerInfo.PI.mySelectedCharacter);
+            totalPlayers.text = PhotonNetwork.PlayerList.Length.ToString(); 
         }
     }
 
@@ -154,4 +185,49 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
         ClearPlayerListings();
         ListPlayers(); 
     }
+
+    public void ChangeListColor(int playerIndex, int roleIndex)
+    {
+        PV.RPC("RPC_ChangeListColor", RpcTarget.All, playerIndex, roleIndex);
+    } 
+
+    [PunRPC]
+    void RPC_ChangeListColor(int playerIndex, int roleIndex)
+    {
+        ChangePlayersListColor(playerIndex, roleIndex); 
+    }
+
+    void ChangePlayersListColor(int playerIndex, int roleIndex)
+    {
+        switch (roleIndex)
+        {
+            case 0:
+                playersList[playerIndex].GetComponent<Image>().color = Color.white;
+                break;
+            case 1:
+                playersList[playerIndex].GetComponent<Image>().color = Color.red;
+                break;
+            case 2:
+                playersList[playerIndex].GetComponent<Image>().color = Color.blue;
+                break;
+            case 3:
+                playersList[playerIndex].GetComponent<Image>().color = Color.yellow;
+                break;
+            default:
+                break;
+        }
+    }
+
+    [PunRPC]
+    void RPC_CheckBoxFalse(int index)
+    {
+        MenuController.MC.isChecked[index] = 0;
+    }
+
+    [PunRPC]
+    void RPC_CheckBoxTrue(int index)
+    {
+        MenuController.MC.isChecked[index] = 1;
+    }
+
 }

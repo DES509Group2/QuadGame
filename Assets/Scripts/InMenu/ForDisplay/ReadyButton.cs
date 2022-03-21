@@ -10,7 +10,7 @@ public class ReadyButton : MonoBehaviour
     {
         MenuController.MC.isReady = true;
         // MenuController.MC.isChecked[MenuController.MC.playersIndex] = 1; 
-        PhotonRoom.room.PV.RPC("RPC_CheckBoxTrue", RpcTarget.All, MenuController.MC.playersIndex); 
+        PhotonRoom.room.PV.RPC("RPC_CheckBoxTrue", RpcTarget.AllBuffered, MenuController.MC.playersIndex); 
         gameObject.SetActive(false); 
     }
 }

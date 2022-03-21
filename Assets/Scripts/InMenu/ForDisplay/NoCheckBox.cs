@@ -31,7 +31,7 @@ public class NoCheckBox : MonoBehaviour
         {
             CheckBox.SetActive(true);
             MenuController.MC.isReady = true;
-            PhotonRoom.room.PV.RPC("RPC_CheckBoxTrue", RpcTarget.All, playersIndex);
+            PhotonRoom.room.PV.RPC("RPC_CheckBoxTrue", RpcTarget.AllBuffered, playersIndex);
             // MenuController.MC.isChecked[playersIndex] = 1; 
             gameObject.SetActive(false);
         }

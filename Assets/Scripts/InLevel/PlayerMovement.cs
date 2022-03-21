@@ -144,22 +144,49 @@ public class PlayerMovement : MonoBehaviour
     void SetDirectionUp()
     {
         dirX = 0;
-        dirY = step; 
+        dirY = step;
+        PV.RPC("RPC_HeadArrowChange", RpcTarget.All, 1); 
     }
     void SetDirectionDown()
     {
         dirX = 0;
-        dirY = -step; 
+        dirY = -step;
+        PV.RPC("RPC_HeadArrowChange", RpcTarget.All, 2);
     }
     void SetDirectionLeft()
     {
         dirX = -step;
-        dirY = 0; 
+        dirY = 0;
+        PV.RPC("RPC_HeadArrowChange", RpcTarget.All, 3);
     }
     void SetDirectionRight()
     {
         dirX = step;
-        dirY = 0; 
+        dirY = 0;
+        PV.RPC("RPC_HeadArrowChange", RpcTarget.All, 4); 
+    }
+
+    [PunRPC]
+    void RPC_HeadArrowChange(int dir)
+    {
+        avatarSetup.myHeadArrow.transform.rotation = Quaternion.identity;
+        switch (dir)
+        {
+            case 1:
+                avatarSetup.myHeadArrow.transform.Rotate(0, 0, 0);
+                break;
+            case 2:
+                avatarSetup.myHeadArrow.transform.Rotate(0, 0, 180);
+                break;
+            case 3:
+                avatarSetup.myHeadArrow.transform.Rotate(0, 0, 90);
+                break;
+            case 4:
+                avatarSetup.myHeadArrow.transform.Rotate(0, 0, -90);
+                break;
+            default:
+                break; 
+        }
     }
 
     void GetInput()

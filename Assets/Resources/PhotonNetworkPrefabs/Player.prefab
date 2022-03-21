@@ -351,6 +351,8 @@ MonoBehaviour:
   playerLength: 0
   myCamera: {fileID: 316836779183248203}
   myAL: {fileID: 2917724443235806363}
+  ArrowPrefab: {fileID: 3459634343631965889, guid: 4f2a0e7df60b81744a574c2f35fb407a, type: 3}
+  myHeadArrow: {fileID: 0}
 --- !u!114 &-1486265703163169052
 MonoBehaviour:
   m_ObjectHideFlags: 0

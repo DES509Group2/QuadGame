@@ -14,6 +14,10 @@ public class AvatarSetup : MonoBehaviour
     public Camera myCamera;
     public AudioListener myAL;
 
+    [SerializeField]
+    private GameObject ArrowPrefab; 
+    public GameObject myHeadArrow; 
+
     void Start()
     {
         PV = GetComponent<PhotonView>(); 
@@ -32,6 +36,7 @@ public class AvatarSetup : MonoBehaviour
     void RPC_AddCharacter(int whichCharacter)
     {
         characterValue = whichCharacter;
-        myCharacter = Instantiate(PlayerInfo.PI.allCharacters[whichCharacter], transform.position, transform.rotation, transform);  
+        myCharacter = Instantiate(PlayerInfo.PI.allCharacters[whichCharacter], transform.position, transform.rotation, transform);
+        myHeadArrow = Instantiate(ArrowPrefab, transform.position, transform.rotation, transform); 
     }
 }

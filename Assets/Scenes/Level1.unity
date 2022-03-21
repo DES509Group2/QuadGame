@@ -9169,6 +9169,7 @@ MonoBehaviour:
   maxCombo: 0
   allPlayerScore: 
   otherPlayerScore: 
+  failedPlayers: 0
 --- !u!4 &1238497850
 Transform:
   m_ObjectHideFlags: 0

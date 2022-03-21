@@ -78,13 +78,16 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     private void Update()
     {
-        if (MenuController.MC.isReady)
+        if (readyButton)
         {
-            readyButton.SetActive(false);
-        }
-        else
-        {
-            readyButton.SetActive(true); 
+            if (MenuController.MC.isReady)
+            {
+                readyButton.SetActive(false);
+            }
+            else
+            {
+                readyButton.SetActive(true);
+            }
         }
     }
 

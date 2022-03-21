@@ -58,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (PV.IsMine)
         {
+            Debug.Log("+++++++++" + PlayerInfo.PI.mySelectedCharacter + "+++++++++"); 
             playerIndex = PlayerInfo.PI.mySelectedCharacter; 
         }
 
@@ -169,23 +170,26 @@ public class PlayerMovement : MonoBehaviour
     [PunRPC]
     void RPC_HeadArrowChange(int dir)
     {
-        avatarSetup.myHeadArrow.transform.rotation = Quaternion.identity;
-        switch (dir)
+        if (avatarSetup.myHeadArrow)
         {
-            case 1:
-                avatarSetup.myHeadArrow.transform.Rotate(0, 0, 0);
-                break;
-            case 2:
-                avatarSetup.myHeadArrow.transform.Rotate(0, 0, 180);
-                break;
-            case 3:
-                avatarSetup.myHeadArrow.transform.Rotate(0, 0, 90);
-                break;
-            case 4:
-                avatarSetup.myHeadArrow.transform.Rotate(0, 0, -90);
-                break;
-            default:
-                break; 
+            avatarSetup.myHeadArrow.transform.rotation = Quaternion.identity;
+            switch (dir)
+            {
+                case 1:
+                    avatarSetup.myHeadArrow.transform.Rotate(0, 0, 0);
+                    break;
+                case 2:
+                    avatarSetup.myHeadArrow.transform.Rotate(0, 0, 180);
+                    break;
+                case 3:
+                    avatarSetup.myHeadArrow.transform.Rotate(0, 0, 90);
+                    break;
+                case 4:
+                    avatarSetup.myHeadArrow.transform.Rotate(0, 0, -90);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

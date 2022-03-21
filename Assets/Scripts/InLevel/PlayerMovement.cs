@@ -63,6 +63,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         pressCounter = 0;
+
+        SoundManager.SM.PlayMetronome(); 
     }
 
     void Update()
@@ -206,8 +208,9 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionUp();
                 TailGrow();
                 isTurn = false;
-                // audioData.Play(0);
-                PlayPlayerBeat(); 
+
+                SoundManager.SM.PlayTailIncrease(playerIndex); 
+
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -225,8 +228,9 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionLeft();
                 TailGrow();
                 isTurn = false;
-                // audioData.Play(0);
-                PlayPlayerBeat();
+
+                SoundManager.SM.PlayTailIncrease(playerIndex);
+
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -244,8 +248,9 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionDown();
                 TailGrow();
                 isTurn = false;
-                // audioData.Play(0);
-                PlayPlayerBeat();
+
+                SoundManager.SM.PlayTailIncrease(playerIndex);
+
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -263,8 +268,9 @@ public class PlayerMovement : MonoBehaviour
                 SetDirectionRight();
                 TailGrow();
                 isTurn = false;
-                // audioData.Play(0);
-                PlayPlayerBeat();
+
+                SoundManager.SM.PlayTailIncrease(playerIndex);
+
                 if (scaleChange != null)
                     scaleChange();
                 GameSetup.GS.PlayCombo(); 
@@ -273,30 +279,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 GameSetup.GS.currentCombo = 0; 
             }
-        }
-    }
-
-    void PlayPlayerBeat()
-    {
-        if (playerIndex == 0)
-        {
-            // audioData.Play(0);
-            SoundManager.SM.PlayBeatOne(); 
-        }
-        else if (playerIndex == 1)
-        {
-            // audioData.Play(0);
-            SoundManager.SM.PlayBeatTwo(); 
-        }
-        else if (playerIndex == 2)
-        {
-            // audioData.Play(0);
-            SoundManager.SM.PlayBeatThree(); 
-        }
-        else if (playerIndex == 3)
-        {
-            // audioData.Play(0);
-            SoundManager.SM.PlayBeatFour(); 
         }
     }
 
@@ -310,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
                 // PV.RPC("RPC_DestoryTail", RpcTarget.All);
                 PhotonNetwork.Destroy(tailsList[tailsList.Count - 1].gameObject);
                 tailsList.Remove(tailsList[tailsList.Count - 1]);
-                SoundManager.SM.PlayTailDecrease();
+                SoundManager.SM.PlayTailDecrease(playerIndex); 
             }
             else
             {
@@ -359,7 +341,6 @@ public class PlayerMovement : MonoBehaviour
         if (newTail)
         {
             tailsList.Add(newTail.transform);
-            SoundManager.SM.PlayTailIncrease();
         }
     }
 
@@ -374,7 +355,9 @@ public class PlayerMovement : MonoBehaviour
             collision.gameObject.GetComponent<CircleCollider2D>().enabled = false; 
             // Physics2D.IgnoreCollision(collision, GetComponent<CircleCollider2D>()); 
 
-            AddScore(); 
+            AddScore();
+            SoundManager.SM.PlayPickup(playerIndex); 
+
             if (PV.IsMine) // Destroy(collision.gameObject);
             {
                 PV.RPC("RPC_DestroyOrb", RpcTarget.All, collision.tag, transform.position);

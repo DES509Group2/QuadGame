@@ -7,13 +7,18 @@ public class SoundManager : MonoBehaviour
     public static SoundManager SM; 
 
     [SerializeField]
-    private AudioSource audioSource;
+    private AudioSource audioSource, bgmAudioSource; 
     [SerializeField]
-    private AudioSource supportAudioSounce; 
+    private AudioSource supportAudioSounce, supportAudioSounceLoop;  
+
     [SerializeField]
-    private AudioClip beatPlayer1, beatPlayer2, beatPlayer3, beatPlayer4;
+    private AudioClip metronome;
     [SerializeField]
-    private AudioClip tailIncrease, tailDecrease;
+    private AudioClip tailIncreaseWhite, tailIncreaseRed, tailIncreaseBlue, tailIncreaseYellow;
+    [SerializeField]
+    private AudioClip tailDecreaseWhite, tailDecreaseRed, tailDecreaseBlue, tailDecreaseYellow;
+    [SerializeField]
+    private AudioClip pickupWhite, pickupRed, pickupBlue, pickupYellow; 
 
     private void OnEnable()
     {
@@ -22,37 +27,77 @@ public class SoundManager : MonoBehaviour
             SoundManager.SM = this;
         }
     }
-    public void PlayBeatOne()
+
+    public void PlayMetronome()
     {
-        audioSource.clip = beatPlayer1; 
+        bgmAudioSource.clip = metronome;
+        bgmAudioSource.Play(); 
+    }
+
+    public void PlayTailIncrease(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                audioSource.clip = tailIncreaseWhite;
+                break;
+            case 1:
+                audioSource.clip = tailIncreaseRed;
+                break;
+            case 2:
+                audioSource.clip = tailIncreaseBlue; 
+                break;
+            case 3:
+                audioSource.clip = tailIncreaseYellow; 
+                break;
+            default:
+                break;
+        }
         audioSource.Play(); 
     }
-    public void PlayBeatTwo()
+    
+    public void PlayTailDecrease(int index)
     {
-        audioSource.clip = beatPlayer2; 
-        audioSource.Play();
-    }
-    public void PlayBeatThree()
-    {
-        audioSource.clip = beatPlayer3; 
-        audioSource.Play();
-    }
-    public void PlayBeatFour()
-    {
-        audioSource.clip = beatPlayer4; 
+        switch (index)
+        {
+            case 0:
+                audioSource.clip = tailDecreaseWhite;
+                break;
+            case 1:
+                audioSource.clip = tailDecreaseRed;
+                break;
+            case 2:
+                audioSource.clip = tailDecreaseBlue;
+                break;
+            case 3:
+                audioSource.clip = tailDecreaseYellow;
+                break;
+            default:
+                break;
+        }
         audioSource.Play();
     }
 
-    public void PlayTailIncrease()
+    public void PlayPickup(int index)
     {
-        supportAudioSounce.clip = tailIncrease;
+        switch (index)
+        {
+            case 0:
+                supportAudioSounce.clip = pickupWhite;
+                break;
+            case 1:
+                supportAudioSounce.clip = pickupRed;
+                break;
+            case 2:
+                supportAudioSounce.clip = pickupBlue;
+                break;
+            case 3:
+                supportAudioSounce.clip = pickupYellow;
+                break;
+            default:
+                break;
+        }
         supportAudioSounce.Play(); 
-    }
-    
-    public void PlayTailDecrease()
-    {
-        supportAudioSounce.clip = tailDecrease;
-        supportAudioSounce.Play();  
     }
 
 }

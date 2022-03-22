@@ -47,6 +47,9 @@ public class GameSetup : MonoBehaviour
 
     public int failedPlayers;
 
+    public Animator anim;
+    public Animator anim1;
+    public Animator anim2;
     private void OnEnable()
     {
         if (GameSetup.GS == null)
@@ -57,6 +60,7 @@ public class GameSetup : MonoBehaviour
 
     private void Start()
     {
+
         playerLength = 1;
         maxPlayerLength = 1;
         playerScore = 0;
@@ -73,6 +77,12 @@ public class GameSetup : MonoBehaviour
         otherPlayerScore = new int[3] { 0, 0, 0 };
 
         failedPlayers = 0;
+
+
+
+        StartCoroutine(startAnim());
+        Time.timeScale = 0;
+
     }
 
     private void Update()
@@ -209,6 +219,30 @@ public class GameSetup : MonoBehaviour
         int millisecond = (int)((survivalTime - (int)survivalTime) * 1000);
 
         return string.Format("{0:D2}:{1:D2}:{2:D2}", minute, second, millisecond); 
+    }
+
+    IEnumerator startAnim()
+    {
+        //yield return null;
+        //Debug.Log("1");
+
+        anim = GameObject.Find("1").GetComponent<Animator>();
+        //anim.Play("1", 0);
+        yield return new WaitForSecondsRealtime(1.0f);
+        GameObject animContro = GameObject.Find("StartAnim");
+        //print(animContro);
+        animContro.transform.Find("2").gameObject.SetActive(true);
+        //GameObject number1 = animContro.transform.Find("1").gameObject;
+        //number1.SetActive(true);
+        //GameObject.Find("StartAnim").gameObject.transform.Find("1").gameObject.SetActive(true);
+
+        //anim1.Play("1", 0);
+        yield return new WaitForSecondsRealtime(1.0f);
+        animContro.transform.Find("3").gameObject.SetActive(true);
+        //anim2.Play("1", 0);
+        yield return new WaitForSecondsRealtime(1.0f);
+        animContro.transform.Find("go").gameObject.SetActive(true);
+        Time.timeScale = 1;
     }
 
 }

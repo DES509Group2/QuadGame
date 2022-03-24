@@ -47,6 +47,8 @@ public class GameSetup : MonoBehaviour
 
     public int failedPlayers;
 
+    public GameObject deathPanel; 
+
     private void OnEnable()
     {
         if (GameSetup.GS == null)
@@ -79,6 +81,11 @@ public class GameSetup : MonoBehaviour
     {
         if (isTimeFly)
             survivalTime += Time.deltaTime;
+
+        if (playerLength <= 0)
+        {
+            deathPanel.SetActive(true); 
+        }
         
         CheckGameFailed();
         RefreshScore();
@@ -154,6 +161,8 @@ public class GameSetup : MonoBehaviour
         {
             GameEndUI.SetActive(true);
             isTimeFly = false;
+
+            deathPanel.SetActive(false); 
         }
     }
 
@@ -163,6 +172,8 @@ public class GameSetup : MonoBehaviour
         {
             GameWinUI.SetActive(true);
             isTimeFly = false;
+
+            deathPanel.SetActive(false); 
         }
     }
 

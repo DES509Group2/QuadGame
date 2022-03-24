@@ -296,6 +296,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                GameSetup.GS.playerLength = 0; 
                 if (PV.IsMine)
                 {
                     PV.RPC("RPC_AddFailedPlayer", RpcTarget.All);

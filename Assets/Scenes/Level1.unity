@@ -4943,6 +4943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrbYellow (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8903800361368107271, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
 --- !u!4 &501939490 stripped
@@ -4960,6 +4964,10 @@ PrefabInstance:
     - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_Name
       value: OrbBlue (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1277444589829210474, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_RootOrder
@@ -7643,6 +7651,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrbWhite (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8033831842927480373, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8016,6 +8028,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrbRed (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1165845417256046823, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
 --- !u!4 &983757359 stripped
@@ -8235,6 +8251,10 @@ PrefabInstance:
     - target: {fileID: 1165845417256046823, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
       propertyPath: m_Name
       value: OrbRed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1165845417256046823, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
@@ -11381,6 +11401,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrbYellow (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8903800361368107271, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
 --- !u!4 &1491891026 stripped
@@ -12199,6 +12223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrbBlue (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1277444589829210474, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -12447,6 +12475,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1783303804}
+  - component: {fileID: 1783303805}
   m_Layer: 0
   m_Name: Orbs
   m_TagString: Untagged
@@ -12480,6 +12509,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1783303805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783303803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9eae7aea0e0cd4a828925a7d58288c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TopLeftPosition: {x: -8.5, y: 11.5}
+  TopRightPosition: {x: 8.5, y: 11.5}
+  BottomLeftPosition: {x: -8.5, y: -5.5}
+  BottomRightPosition: {x: 8.5, y: -5.5}
+  OrbsWhite: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
+  OrbsRed: {fileID: 1165845417256046823, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
+  OrbsYellow: {fileID: 8903800361368107271, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
+  OrbsBlue: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
+  SpawnCount: 1
 --- !u!1 &1791150194
 GameObject:
   m_ObjectHideFlags: 0
@@ -12534,6 +12584,10 @@ PrefabInstance:
     - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_Name
       value: OrbWhite (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8033831842927480373, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_RootOrder
@@ -14377,6 +14431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OrbRed
       objectReference: {fileID: 0}
+    - target: {fileID: 1165845417256046823, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
 --- !u!1001 &1277444590547567340
@@ -14389,6 +14447,10 @@ PrefabInstance:
     - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_Name
       value: OrbBlue
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1277444589829210474, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_RootOrder
@@ -14446,6 +14508,10 @@ PrefabInstance:
     - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_Name
       value: OrbWhite
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8033831842927480373, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_RootOrder
@@ -14548,6 +14614,10 @@ PrefabInstance:
     - target: {fileID: 8903800361368107271, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
       propertyPath: m_Name
       value: OrbYellow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903800361368107271, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}

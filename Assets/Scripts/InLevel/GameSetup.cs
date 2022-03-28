@@ -46,8 +46,11 @@ public class GameSetup : MonoBehaviour
     public int[] otherPlayerScore;
 
     public int failedPlayers;
+    public int wonPlayers; 
 
-    public GameObject deathPanel; 
+    public GameObject deathPanel;
+
+    public bool isEnd;
 
     private void OnEnable()
     {
@@ -75,6 +78,9 @@ public class GameSetup : MonoBehaviour
         otherPlayerScore = new int[3] { 0, 0, 0 };
 
         failedPlayers = 0;
+        wonPlayers = 0;
+
+        isEnd = false; 
     }
 
     private void Update()
@@ -82,7 +88,7 @@ public class GameSetup : MonoBehaviour
         if (isTimeFly)
             survivalTime += Time.deltaTime;
 
-        if (playerLength <= 0)
+        if (playerLength <= 0 && !isEnd)
         {
             deathPanel.SetActive(true); 
         }
@@ -168,7 +174,7 @@ public class GameSetup : MonoBehaviour
 
     public void CheckGameWin() 
     {
-        if (groupScore >= winScore)
+        if (failedPlayers + wonPlayers == PhotonNetwork.PlayerList.Length && groupScore >= winScore)
         {
             GameWinUI.SetActive(true);
             isTimeFly = false;

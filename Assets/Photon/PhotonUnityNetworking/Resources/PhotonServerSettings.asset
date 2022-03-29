@@ -54,6 +54,7 @@ MonoBehaviour:
   - RPC_CheckBoxFalse
   - RPC_CheckBoxTrue
   - RPC_HeadArrowChange
+  - RPC_AddWonPlayers
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

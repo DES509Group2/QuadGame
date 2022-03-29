@@ -46,6 +46,11 @@ public class GameSetup : MonoBehaviour
     public int[] otherPlayerScore;
 
     public int failedPlayers;
+    public int wonPlayers; 
+
+    public GameObject deathPanel;
+
+    public bool isEnd;
 
     public Animator anim;
     public Animator anim1;
@@ -78,17 +83,23 @@ public class GameSetup : MonoBehaviour
 
         failedPlayers = 0;
 
-
-
         StartCoroutine(startAnim());
         Time.timeScale = 0;
 
+        wonPlayers = 0;
+
+        isEnd = false; 
     }
 
     private void Update()
     {
         if (isTimeFly)
             survivalTime += Time.deltaTime;
+
+        if (playerLength <= 0 && !isEnd)
+        {
+            deathPanel.SetActive(true); 
+        }
         
         CheckGameFailed();
         RefreshScore();
@@ -164,15 +175,19 @@ public class GameSetup : MonoBehaviour
         {
             GameEndUI.SetActive(true);
             isTimeFly = false;
+
+            deathPanel.SetActive(false); 
         }
     }
 
     public void CheckGameWin() 
     {
-        if (groupScore >= winScore)
+        if (failedPlayers + wonPlayers == PhotonNetwork.PlayerList.Length && groupScore >= winScore)
         {
             GameWinUI.SetActive(true);
             isTimeFly = false;
+
+            deathPanel.SetActive(false); 
         }
     }
 

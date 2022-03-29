@@ -103,6 +103,10 @@ public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
         Debug.Log(PhotonNetwork.NickName + ": Tring to create a new Room");
 
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)maxRoomSize };
+        if (roomName == "")
+        {
+            roomName = "Default"; 
+        }
         PhotonNetwork.CreateRoom(roomName, roomOps); 
     }
 
@@ -115,12 +119,26 @@ public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void OnNickNameChanged(string nameIn)
     {
-        nickName = nameIn; 
+        if (nameIn != "")
+        {
+            nickName = nameIn;
+        }
+        else
+        {
+            nickName = "Default"; 
+        }
     }
 
     public void OnRoomNameChanged(string nameIn)
     {
-        roomName = nameIn; 
+        if (nameIn != "")
+        {
+            roomName = nameIn;
+        }
+        else
+        {
+            roomName = "Default"; 
+        }
     }
 
     public void JoinLobbyOnClick()
@@ -137,6 +155,10 @@ public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         menuUITwo.SetActive(false);
         menuUIThree.SetActive(true);
+        if (nickName == "")
+        {
+            nickName = "Default"; 
+        }
         PhotonNetwork.NickName = nickName;
         userNameText.text = nickName; 
         Debug.Log("Player: " + PhotonNetwork.NickName);

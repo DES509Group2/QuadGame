@@ -40,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
     private int pressCounter;
 
+    // private bool isEnd;
+
     void Start()
     {
         PV = GetComponent<PhotonView>();
@@ -71,7 +73,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!PV.IsMine) return;
 
-        CheckInCollision(); 
+        if (!GameSetup.GS.isEnd)
+        {
+            CheckInCollision();
+        }
+        else
+        {
+            inCollision = true; 
+        }
 
         if (isTurn)
             sr.color = Color.green;
@@ -172,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
     [PunRPC]
     void RPC_HeadArrowChange(int dir)
     {
-        if (avatarSetup.myHeadArrow)
+        if (avatarSetup && avatarSetup.myHeadArrow)
         {
             avatarSetup.myHeadArrow.transform.rotation = Quaternion.identity;
             switch (dir)
@@ -296,9 +305,13 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                GameSetup.GS.playerLength = 0; 
                 if (PV.IsMine)
                 {
-                    PV.RPC("RPC_AddFailedPlayer", RpcTarget.All);
+                    if (!GameSetup.GS.isEnd)
+                    {
+                        PV.RPC("RPC_AddFailedPlayer", RpcTarget.All);
+                    }
                     PhotonNetwork.Destroy(gameObject);
                 }
             }
@@ -368,6 +381,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (PV.IsMine)
             {
+                if (GameSetup.GS.groupScore >= GameSetup.GS.winScore)
+                {
+                    GameSetup.GS.isEnd = true; 
+                    PV.RPC("RPC_AddWonPlayers", RpcTarget.All);
+                }
                 PV.RPC("RPC_CheckWin", RpcTarget.All); 
             }
         }
@@ -377,6 +395,12 @@ public class PlayerMovement : MonoBehaviour
     void RPC_CheckWin()
     {
         GameSetup.GS.CheckGameWin(); 
+    }
+
+    [PunRPC]
+    void RPC_AddWonPlayers()
+    {
+        GameSetup.GS.wonPlayers++; 
     }
 
     void AddScore()

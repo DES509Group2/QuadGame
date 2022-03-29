@@ -119,7 +119,10 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
     {
         for (int i = playersPanel.childCount - 1; i >= 0; i--)
         {
-            Destroy(playersPanel.GetChild(i).gameObject); 
+            if (playersPanel.GetChild(i))
+            {
+                Destroy(playersPanel.GetChild(i).gameObject);
+            }
         }
 
         playersList.Clear(); 

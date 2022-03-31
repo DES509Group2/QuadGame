@@ -8964,7 +8964,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 621054396}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -9714,10 +9714,12 @@ MonoBehaviour:
   allPlayerScore: 
   otherPlayerScore: 
   failedPlayers: 0
+  wonPlayers: 0
+  deathPanel: {fileID: 1192932768}
+  isEnd: 0
   anim: {fileID: 0}
   anim1: {fileID: 0}
   anim2: {fileID: 0}
-  deathPanel: {fileID: 1192932768}
 --- !u!4 &1238497850
 Transform:
   m_ObjectHideFlags: 0
@@ -10888,18 +10890,18 @@ MonoBehaviour:
   supportAudioSounce: {fileID: 1392019948}
   supportAudioSounceLoop: {fileID: 1392019949}
   metronome: {fileID: 8300000, guid: 92e8fa4cdf6226842b1087d3c40271ca, type: 3}
-  tailIncreaseWhite: {fileID: 8300000, guid: 78ed16a92348d2d448c44c23bfff81c4, type: 3}
-  tailIncreaseRed: {fileID: 8300000, guid: 78ed16a92348d2d448c44c23bfff81c4, type: 3}
-  tailIncreaseBlue: {fileID: 8300000, guid: 78ed16a92348d2d448c44c23bfff81c4, type: 3}
-  tailIncreaseYellow: {fileID: 8300000, guid: 78ed16a92348d2d448c44c23bfff81c4, type: 3}
-  tailDecreaseWhite: {fileID: 8300000, guid: 111b9449f7cb14847880618ff28747f6, type: 3}
-  tailDecreaseRed: {fileID: 8300000, guid: 111b9449f7cb14847880618ff28747f6, type: 3}
-  tailDecreaseBlue: {fileID: 8300000, guid: 111b9449f7cb14847880618ff28747f6, type: 3}
-  tailDecreaseYellow: {fileID: 8300000, guid: 111b9449f7cb14847880618ff28747f6, type: 3}
-  pickupWhite: {fileID: 8300000, guid: cc857583f624f6348aa64301b0f4a3fb, type: 3}
-  pickupRed: {fileID: 8300000, guid: 05a42a90cf397c34082130a6a50a39fc, type: 3}
-  pickupBlue: {fileID: 8300000, guid: 54be430f5dce2704ea6554212ac0a75b, type: 3}
-  pickupYellow: {fileID: 8300000, guid: 9e8840a945d83c14895c441e6d28befa, type: 3}
+  tailIncreaseWhite: {fileID: 8300000, guid: 602db73ec693d784c8db32f0e554a775, type: 3}
+  tailIncreaseRed: {fileID: 8300000, guid: 93055df0b414e3b418a4315bcd421df5, type: 3}
+  tailIncreaseBlue: {fileID: 8300000, guid: b704d4d57afd11a4fb5489b24a2a2832, type: 3}
+  tailIncreaseYellow: {fileID: 8300000, guid: 6a80082af4aa3a144ae78f988f6cb3fc, type: 3}
+  tailDecreaseWhite: {fileID: 8300000, guid: f5b3554cc3dab3841a51b9c9f2585990, type: 3}
+  tailDecreaseRed: {fileID: 8300000, guid: ea10959f6a88a954dbd472f193de2d36, type: 3}
+  tailDecreaseBlue: {fileID: 8300000, guid: 4d54cad5a78e31642bd2073b4113ca5c, type: 3}
+  tailDecreaseYellow: {fileID: 8300000, guid: c796a2ca0bbaede4796d8e43ba133f9d, type: 3}
+  pickupWhite: {fileID: 8300000, guid: 448bf7f4a94dd0942993c0911b9918e9, type: 3}
+  pickupRed: {fileID: 8300000, guid: 3d82114cdff39704790cb1fb289a1dcb, type: 3}
+  pickupBlue: {fileID: 8300000, guid: 9f87b1d035213da4fb19755138a868cf, type: 3}
+  pickupYellow: {fileID: 8300000, guid: 308fb38dff933ff4b85c641654bd6a5b, type: 3}
 --- !u!4 &1392019946
 Transform:
   m_ObjectHideFlags: 0

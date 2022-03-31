@@ -18,7 +18,10 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     private AudioClip tailDecreaseWhite, tailDecreaseRed, tailDecreaseBlue, tailDecreaseYellow;
     [SerializeField]
-    private AudioClip pickupWhite, pickupRed, pickupBlue, pickupYellow; 
+    private AudioClip pickupWhite, pickupRed, pickupBlue, pickupYellow;
+
+    [SerializeField]
+    private AudioClip deathWhite, deathRed, deathBlue, deathYellow; 
 
     private void OnEnable()
     {
@@ -98,6 +101,30 @@ public class SoundManager : MonoBehaviour
                 break;
         }
         supportAudioSounce.Play(); 
+    }
+
+
+    public void PlayDeath(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                supportAudioSounce.clip = deathWhite;
+                break;
+            case 1:
+                supportAudioSounce.clip = deathRed;
+                break;
+            case 2:
+                supportAudioSounce.clip = deathBlue;
+                break;
+            case 3:
+                supportAudioSounce.clip = deathYellow;
+                break;
+            default:
+                break;
+        }
+        supportAudioSounce.Play();
+        // To reference in function: SoundManager.SM.PlayDeath(playerIndex); 
     }
 
 }

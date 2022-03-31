@@ -310,6 +310,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (!GameSetup.GS.isEnd)
                     {
+                        SoundManager.SM.PlayDeath(playerIndex);
                         PV.RPC("RPC_AddFailedPlayer", RpcTarget.All);
                     }
                     PhotonNetwork.Destroy(gameObject);

@@ -10902,6 +10902,10 @@ MonoBehaviour:
   pickupRed: {fileID: 8300000, guid: 3d82114cdff39704790cb1fb289a1dcb, type: 3}
   pickupBlue: {fileID: 8300000, guid: 9f87b1d035213da4fb19755138a868cf, type: 3}
   pickupYellow: {fileID: 8300000, guid: 308fb38dff933ff4b85c641654bd6a5b, type: 3}
+  deathWhite: {fileID: 8300000, guid: 0e629cfe273dcb04d98388b441dcbe21, type: 3}
+  deathRed: {fileID: 8300000, guid: 1a513b65fcf234144bc05169cf5be267, type: 3}
+  deathBlue: {fileID: 8300000, guid: a13552d1853bdea4c855a5682f77597c, type: 3}
+  deathYellow: {fileID: 8300000, guid: 44b2cda5482db7d4b94a48ed288c2d1d, type: 3}
 --- !u!4 &1392019946
 Transform:
   m_ObjectHideFlags: 0

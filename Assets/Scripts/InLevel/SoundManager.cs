@@ -37,6 +37,11 @@ public class SoundManager : MonoBehaviour
         bgmAudioSource.Play(); 
     }
 
+    public void PauseMetronome()
+    {
+        bgmAudioSource.clip = metronome;
+        bgmAudioSource.Pause();
+    }
     public void PlayTailIncrease(int index)
     {
         switch (index)

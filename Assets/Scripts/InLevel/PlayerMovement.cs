@@ -35,6 +35,17 @@ public class PlayerMovement : MonoBehaviour
     public delegate void ScaleChangeAciton();
     public static event ScaleChangeAciton scaleChange;
 
+    [SerializeField]
+    private Vector2 TopLeftPosition; //自定义地图四个角位置
+    [SerializeField]
+    private Vector2 TopRightPosition;
+    [SerializeField]
+    private Vector2 BottomLeftPosition;
+    [SerializeField]
+    private Vector2 BottomRightPosition;
+    private int x1;
+    private int y1;
+
     [SerializeField] 
     private int playerIndex;
 
@@ -135,23 +146,42 @@ public class PlayerMovement : MonoBehaviour
 
     void SetRandomDirection()
     {
-        int randomDir = Random.Range(0, 4);
-        if (randomDir == 0)
-        {
-            SetDirectionUp(); 
-        }
-        if (randomDir == 1)
+        //确定四个象限；
+        x1 = (int)(TopLeftPosition.x + TopRightPosition.x) / 2;
+        y1 = (int)(TopLeftPosition.y + BottomLeftPosition.y) / 2;
+        if(transform.position.x < x1 && transform.position.y > y1)
         {
             SetDirectionDown();
         }
-        if (randomDir == 2)
+        if (transform.position.x > x1 && transform.position.y > y1)
         {
             SetDirectionLeft();
         }
-        if (randomDir == 3)
+        if (transform.position.x > x1 && transform.position.y < y1)
         {
-            SetDirectionRight(); 
+            SetDirectionUp();
         }
+        if (transform.position.x < x1 && transform.position.y < y1)
+        {
+            SetDirectionRight();
+        }
+        //int randomDir = Random.Range(0, 4);
+        //if (randomDir == 0)
+        //{
+        //    SetDirectionUp(); 
+        //}
+        //if (randomDir == 1)
+        //{
+        //    SetDirectionDown();
+        //}
+        //if (randomDir == 2)
+        //{
+        //    SetDirectionLeft();
+        //}
+        //if (randomDir == 3)
+        //{
+        //    SetDirectionRight(); 
+        //}
     }
     void SetDirectionUp()
     {

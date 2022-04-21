@@ -25,7 +25,10 @@ public class OrbsSpawn : MonoBehaviour
     private int x1;
     private int y1;
     [SerializeField]
-    private int SpawnCount = 2;
+    private int SpawnCount1 = Random.Range(1, 2);
+    private int SpawnCount2 = Random.Range(1, 2);
+    private int SpawnCount3 = Random.Range(1, 2);
+    private int SpawnCount4 = Random.Range(1, 2);
     // Start is called before the first frame update
     void Start()
     {
@@ -37,26 +40,35 @@ public class OrbsSpawn : MonoBehaviour
         //根据地图边界确定生成位置
 
         //生成左上象限orbs
-        for(int i = 1; i <= SpawnCount; i++)
+        for (int i = 1; i <= SpawnCount1; i++)
         {
-            for(int j = 0; j <= 3; j++)
+            for (int j = 0; j <= 3; j++)
             {
-                orbsX = Random.Range((int)TopLeftPosition.x, x1 - 1)+ 0.5f;
-                orbsY = Random.Range((int)TopLeftPosition.y, y1 + 1)- 0.5f;
+                orbsX = Random.Range((int)TopLeftPosition.x, x1 - 1) + 0.5f;
+                orbsY = Random.Range((int)TopLeftPosition.y, y1 + 1) - 0.5f;
                 Instantiate(orbsList[j], new Vector2(orbsX, orbsY), Quaternion.identity);
             }
+        }
+        for (int i = 1; i <= SpawnCount2; i++)
+        {
             for (int j = 0; j <= 3; j++)
             {
                 orbsX = Random.Range((int)BottomLeftPosition.x, x1 - 1) + 0.5f;
                 orbsY = Random.Range((int)BottomLeftPosition.y, y1 - 1) + 0.5f;
                 Instantiate(orbsList[j], new Vector2(orbsX, orbsY), Quaternion.identity);
             }
+        }
+        for (int i = 1; i <= SpawnCount3; i++)
+        {
             for (int j = 0; j <= 3; j++)
             {
                 orbsX = Random.Range((int)TopRightPosition.x, x1 + 1) - 0.5f;
                 orbsY = Random.Range((int)TopRightPosition.y, y1 + 1) - 0.5f;
                 Instantiate(orbsList[j], new Vector2(orbsX, orbsY), Quaternion.identity);
             }
+        }
+        for (int i = 1; i <= SpawnCount4; i++)
+        {
             for (int j = 0; j <= 3; j++)
             {
                 orbsX = Random.Range((int)BottomRightPosition.x, x1 + 1) - 0.5f;

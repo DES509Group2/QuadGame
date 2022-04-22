@@ -21,7 +21,9 @@ public class SoundManager : MonoBehaviour
     private AudioClip pickupWhite, pickupRed, pickupBlue, pickupYellow;
 
     [SerializeField]
-    private AudioClip deathWhite, deathRed, deathBlue, deathYellow; 
+    private AudioClip deathWhite, deathRed, deathBlue, deathYellow;
+
+    private bool isStop; 
 
     private void OnEnable()
     {
@@ -29,21 +31,29 @@ public class SoundManager : MonoBehaviour
         {
             SoundManager.SM = this;
         }
+
+        isStop = false; 
     }
 
     public void PlayMetronome()
     {
+        if (isStop == true) return; 
+
         bgmAudioSource.clip = metronome;
         bgmAudioSource.Play(); 
     }
 
     public void PauseMetronome()
     {
+        if (isStop == true) return;
+
         bgmAudioSource.clip = metronome;
         bgmAudioSource.Pause();
     }
     public void PlayTailIncrease(int index)
     {
+        if (isStop == true) return;
+
         switch (index)
         {
             case 0:
@@ -66,6 +76,8 @@ public class SoundManager : MonoBehaviour
     
     public void PlayTailDecrease(int index)
     {
+        if (isStop == true) return;
+
         switch (index)
         {
             case 0:
@@ -88,6 +100,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPickup(int index)
     {
+        if (isStop == true) return;
+
         switch (index)
         {
             case 0:
@@ -111,6 +125,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayDeath(int index)
     {
+        if (isStop == true) return;
+
         switch (index)
         {
             case 0:
@@ -130,6 +146,15 @@ public class SoundManager : MonoBehaviour
         }
         supportAudioSounce.Play();
         // To reference in function: SoundManager.SM.PlayDeath(playerIndex); 
+    }
+
+    public void StopAll()
+    {
+        audioSource.Stop();
+        bgmAudioSource.Stop();
+        supportAudioSounce.Stop();
+        supportAudioSounceLoop.Stop();
+        isStop = true; 
     }
 
 }

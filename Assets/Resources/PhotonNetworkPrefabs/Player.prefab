@@ -333,6 +333,10 @@ MonoBehaviour:
   player:
     serializedVersion: 2
     m_Bits: 64
+  TopLeftPosition: {x: 0, y: 0}
+  TopRightPosition: {x: 0, y: 0}
+  BottomLeftPosition: {x: 0, y: 0}
+  BottomRightPosition: {x: 0, y: 0}
   playerIndex: 0
 --- !u!114 &-5098428951818951863
 MonoBehaviour:

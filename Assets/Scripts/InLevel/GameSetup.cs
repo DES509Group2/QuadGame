@@ -174,6 +174,7 @@ public class GameSetup : MonoBehaviour
         if (failedPlayers == PhotonNetwork.PlayerList.Length) 
         {
             GameEndUI.SetActive(true);
+            SoundManager.SM.StopAll(); 
             isTimeFly = false;
 
             deathPanel.SetActive(false); 
@@ -185,6 +186,7 @@ public class GameSetup : MonoBehaviour
         if (failedPlayers + wonPlayers == PhotonNetwork.PlayerList.Length && groupScore >= winScore)
         {
             GameWinUI.SetActive(true);
+            SoundManager.SM.StopAll(); 
             isTimeFly = false;
 
             deathPanel.SetActive(false); 

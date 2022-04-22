@@ -5156,6 +5156,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: -5654843453366053725, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
+      propertyPath: sceneViewId
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8903800361368107270, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -5222,6 +5226,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: -182871939963073003, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_Name
       value: OrbBlue (1)
@@ -8326,6 +8334,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: 3954883751047212167, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_Name
       value: OrbWhite (2)
@@ -8711,6 +8723,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8794923577149505175, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
 --- !u!4 &983757359 stripped
@@ -9067,6 +9083,10 @@ PrefabInstance:
     - target: {fileID: 1165845417256046823, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8794923577149505175, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
+      propertyPath: sceneViewId
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
@@ -11470,7 +11490,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392019943}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -11613,7 +11633,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392019943}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -11709,7 +11729,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392019943}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -11805,7 +11825,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392019943}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -12272,6 +12292,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: -5654843453366053725, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
+      propertyPath: sceneViewId
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8903800361368107270, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -13217,6 +13241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: -182871939963073003, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_Name
       value: OrbBlue (2)
@@ -13474,6 +13502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1783303804}
   - component: {fileID: 1783303805}
+  - component: {fileID: 1783303806}
   m_Layer: 0
   m_Name: Orbs
   m_TagString: Untagged
@@ -13528,6 +13557,28 @@ MonoBehaviour:
   OrbsYellow: {fileID: 8903800361368107271, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
   OrbsBlue: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
   SpawnCount1: 0
+--- !u!114 &1783303806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783303803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 13
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1791150194
 GameObject:
   m_ObjectHideFlags: 0
@@ -13579,6 +13630,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: 3954883751047212167, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_Name
       value: OrbWhite (1)
@@ -15433,6 +15488,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8794923577149505175, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
 --- !u!1001 &1277444590547567340
@@ -15442,6 +15501,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: -182871939963073003, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
       propertyPath: m_Name
       value: OrbBlue
@@ -15503,6 +15566,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: 3954883751047212167, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
+      propertyPath: sceneViewId
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8033831842927480370, guid: 797ca3989d9cbdc4ba690462d090cee8, type: 3}
       propertyPath: m_Name
       value: OrbWhite
@@ -15565,6 +15632,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783303804}
     m_Modifications:
+    - target: {fileID: -5654843453366053725, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
+      propertyPath: sceneViewId
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8903800361368107270, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
       propertyPath: m_RootOrder
       value: 3

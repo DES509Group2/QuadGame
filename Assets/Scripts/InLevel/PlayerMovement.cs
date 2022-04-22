@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 处理玩家移动 
 public class PlayerMovement : MonoBehaviour
@@ -50,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
     private int playerIndex;
 
     private int pressCounter;
+
+    public GameObject plusOne; 
 
     // private bool isEnd;
 
@@ -380,7 +383,7 @@ public class PlayerMovement : MonoBehaviour
         if (PV.IsMine)
         {
             newTail = PhotonNetwork.Instantiate(Path.Combine("PhotonNetworkPrefabs", "Tail"), nextTailPos, Quaternion.identity, 0); 
-            avatarSetup.playerLength++;
+            avatarSetup.playerLength++; 
         }
         if (newTail)
         {
@@ -439,6 +442,7 @@ public class PlayerMovement : MonoBehaviour
         if (PV.IsMine)
         {
             GameSetup.GS.playerScore++;
+            plusOne.SetActive(true);  
             int tempIndex = playerIndex; 
             int tempScore = GameSetup.GS.playerScore; 
             PV.RPC("RPC_AllScorePlus", RpcTarget.All, tempIndex, tempScore); 

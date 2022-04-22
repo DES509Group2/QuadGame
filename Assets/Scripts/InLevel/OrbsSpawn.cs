@@ -25,13 +25,17 @@ public class OrbsSpawn : MonoBehaviour
     private int x1;
     private int y1;
     [SerializeField]
-    private int SpawnCount1 = Random.Range(1, 2);
-    private int SpawnCount2 = Random.Range(1, 2);
-    private int SpawnCount3 = Random.Range(1, 2);
-    private int SpawnCount4 = Random.Range(1, 2);
+    private int SpawnCount1;
+    private int SpawnCount2;
+    private int SpawnCount3;
+    private int SpawnCount4;
     // Start is called before the first frame update
     void Start()
     {
+        SpawnCount1 = Random.Range(1, 3);
+        SpawnCount2 = Random.Range(1, 3);
+        SpawnCount3 = Random.Range(1, 3);
+        SpawnCount4 = Random.Range(1, 3);
         List<GameObject> orbsList = new List<GameObject>() { OrbsWhite, OrbsRed, OrbsYellow, OrbsBlue};
 
         //确定四个象限；

@@ -13527,7 +13527,7 @@ MonoBehaviour:
   OrbsRed: {fileID: 1165845417256046823, guid: 7e2eed60939688c43b3860280b4eab9a, type: 3}
   OrbsYellow: {fileID: 8903800361368107271, guid: 4abf4260b5aa88a4dbc7b53d3983223e, type: 3}
   OrbsBlue: {fileID: 1277444589829210473, guid: f9fe310bc53c8f84e869a18ab800de20, type: 3}
-  SpawnCount: 1
+  SpawnCount1: 0
 --- !u!1 &1791150194
 GameObject:
   m_ObjectHideFlags: 0

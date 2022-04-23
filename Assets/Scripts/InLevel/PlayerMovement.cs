@@ -418,7 +418,7 @@ public class PlayerMovement : MonoBehaviour
                 if (GameSetup.GS.groupScore >= GameSetup.GS.winScore)
                 {
                     GameSetup.GS.isEnd = true; 
-                    PV.RPC("RPC_AddWonPlayers", RpcTarget.All);
+                    PV.RPC("RPC_AddWonPlayers", RpcTarget.All, playerIndex);
                 }
                 PV.RPC("RPC_CheckWin", RpcTarget.All); 
             }
@@ -432,9 +432,26 @@ public class PlayerMovement : MonoBehaviour
     }
 
     [PunRPC]
-    void RPC_AddWonPlayers()
+    void RPC_AddWonPlayers(int index)
     {
-        GameSetup.GS.wonPlayers++; 
+        GameSetup.GS.wonPlayers++;
+        switch (index)
+        {
+            case 0:
+                GameSetup.GS.isWhiteWin = true; 
+                break;
+            case 1:
+                GameSetup.GS.isRedWin = true; 
+                break;
+            case 2:
+                GameSetup.GS.isBlueWin = true; 
+                break;
+            case 3:
+                GameSetup.GS.isYellowWin = true; 
+                break; 
+            default:
+                break;
+        }
     }
 
     void AddScore()

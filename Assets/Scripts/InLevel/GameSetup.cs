@@ -45,8 +45,13 @@ public class GameSetup : MonoBehaviour
     public int[] allPlayerScore;
     public int[] otherPlayerScore;
 
-    public int failedPlayers;
-    public int wonPlayers; 
+    public int failedPlayers; 
+    public int wonPlayers;
+
+    public bool isWhiteWin;
+    public bool isRedWin;
+    public bool isBlueWin;
+    public bool isYellowWin; 
 
     public GameObject deathPanel;
 
@@ -88,7 +93,12 @@ public class GameSetup : MonoBehaviour
 
         wonPlayers = 0;
 
-        isEnd = false; 
+        isEnd = false;
+
+        isWhiteWin = false;
+        isRedWin = false;
+        isBlueWin = false;
+        isYellowWin = false; 
     }
 
     private void Update()

@@ -11,6 +11,8 @@ public class MenuController : MonoBehaviour
     public GameObject menuUITwo;
     public GameObject menuUIThree; 
     public GameObject startButton;
+    public GameObject ControlUIOne;
+    public GameObject CreditUIOne;
 
     public GameObject changeNameButton;
     public GameObject openCreateRoomButton;
@@ -91,5 +93,28 @@ public class MenuController : MonoBehaviour
     public void OnExitButtonClicked()
     {
         Application.Quit(); 
+    }
+
+    public void OpenControlMenu()
+    {
+        menuUIOne.SetActive(false);
+        ControlUIOne.SetActive(true);
+    }
+    public void OpenCreditMenu()
+    {
+        menuUIOne.SetActive(false);
+        CreditUIOne.SetActive(true);
+    }
+    //Control Menu Buttons
+    public void CloseControlMenu()
+    {
+        ControlUIOne.SetActive(false);
+        menuUIOne.SetActive(true);        
+    }
+    //Credit Menu Buttons
+    public void CloseCreditMenu()
+    {
+        CreditUIOne.SetActive(false);
+        menuUIOne.SetActive(true);        
     }
 }

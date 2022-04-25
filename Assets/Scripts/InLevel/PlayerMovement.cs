@@ -96,10 +96,12 @@ public class PlayerMovement : MonoBehaviour
             inCollision = true; 
         }
 
+        /*
         if (isTurn)
             sr.color = Color.green;
         else
             sr.color = Color.white; 
+        */
 
         GetInput();
         TurnTimer(); 

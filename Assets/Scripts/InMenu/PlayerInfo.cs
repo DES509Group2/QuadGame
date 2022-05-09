@@ -11,6 +11,7 @@ public class PlayerInfo : MonoBehaviour
     public int mySelectedCharacter;
 
     public GameObject[] allCharacters;
+    public GameObject[] allTails; 
 
     private void OnEnable()
     {

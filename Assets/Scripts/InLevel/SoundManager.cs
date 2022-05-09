@@ -7,12 +7,12 @@ public class SoundManager : MonoBehaviour
     public static SoundManager SM; 
 
     [SerializeField]
-    private AudioSource audioSource, bgmAudioSource; 
+    private AudioSource audioSource, bgmAudioSource, bgmMusicSource; 
     [SerializeField]
     private AudioSource supportAudioSounce, supportAudioSounceLoop;  
 
     [SerializeField]
-    private AudioClip metronome;
+    private AudioClip metronome, Level1Bgm;
     [SerializeField]
     private AudioClip tailIncreaseWhite, tailIncreaseRed, tailIncreaseBlue, tailIncreaseYellow;
     [SerializeField]
@@ -22,6 +22,9 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip deathWhite, deathRed, deathBlue, deathYellow;
+
+    [SerializeField]
+    private AudioClip doorUnlock;
 
     private bool isStop; 
 
@@ -40,7 +43,9 @@ public class SoundManager : MonoBehaviour
         if (isStop == true) return; 
 
         bgmAudioSource.clip = metronome;
-        bgmAudioSource.Play(); 
+        bgmAudioSource.Play();
+        bgmMusicSource.clip = Level1Bgm;
+        bgmMusicSource.Play();
     }
 
     public void PauseMetronome()
@@ -49,6 +54,8 @@ public class SoundManager : MonoBehaviour
 
         bgmAudioSource.clip = metronome;
         bgmAudioSource.Pause();
+        bgmMusicSource.clip = Level1Bgm;
+        bgmMusicSource.Pause();
     }
     public void PlayTailIncrease(int index)
     {
@@ -152,9 +159,18 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.Stop();
         bgmAudioSource.Stop();
+        bgmMusicSource.Stop();
         supportAudioSounce.Stop();
         supportAudioSounceLoop.Stop();
         isStop = true; 
     }
 
+    public void PlayDoorUnlocked()
+    {
+        if (isStop == false)
+        {
+            supportAudioSounce.clip = doorUnlock;
+            supportAudioSounce.Play();
+        }
+    }
 }

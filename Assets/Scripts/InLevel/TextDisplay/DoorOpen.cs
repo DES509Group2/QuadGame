@@ -11,6 +11,7 @@ public class DoorOpen : MonoBehaviour
     {
         if (GameSetup.GS.groupScore >= GameSetup.GS.winScore)
         {
+            SoundManager.SM.PlayDoorUnlocked();
             doorClose.SetActive(false); 
             doorOpen.SetActive(true);
         }

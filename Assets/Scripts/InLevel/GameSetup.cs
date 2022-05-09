@@ -45,8 +45,13 @@ public class GameSetup : MonoBehaviour
     public int[] allPlayerScore;
     public int[] otherPlayerScore;
 
-    public int failedPlayers;
-    public int wonPlayers; 
+    public int failedPlayers; 
+    public int wonPlayers;
+
+    public bool isWhiteWin;
+    public bool isRedWin;
+    public bool isBlueWin;
+    public bool isYellowWin; 
 
     public GameObject deathPanel;
 
@@ -55,6 +60,9 @@ public class GameSetup : MonoBehaviour
     public Animator anim;
     public Animator anim1;
     public Animator anim2;
+
+    public GameObject EndScreenUI; 
+
     private void OnEnable()
     {
         if (GameSetup.GS == null)
@@ -88,7 +96,12 @@ public class GameSetup : MonoBehaviour
 
         wonPlayers = 0;
 
-        isEnd = false; 
+        isEnd = false;
+
+        isWhiteWin = false;
+        isRedWin = false;
+        isBlueWin = false;
+        isYellowWin = false; 
     }
 
     private void Update()
@@ -173,7 +186,8 @@ public class GameSetup : MonoBehaviour
     {
         if (failedPlayers == PhotonNetwork.PlayerList.Length) 
         {
-            GameEndUI.SetActive(true);
+            // GameEndUI.SetActive(true);
+            EndScreenUI.SetActive(true); 
             SoundManager.SM.StopAll(); 
             isTimeFly = false;
 
@@ -185,7 +199,8 @@ public class GameSetup : MonoBehaviour
     {
         if (failedPlayers + wonPlayers == PhotonNetwork.PlayerList.Length && groupScore >= winScore)
         {
-            GameWinUI.SetActive(true);
+            // GameWinUI.SetActive(true);
+            EndScreenUI.SetActive(true); 
             SoundManager.SM.StopAll(); 
             isTimeFly = false;
 

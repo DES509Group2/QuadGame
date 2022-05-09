@@ -4945,6 +4945,11 @@ MonoBehaviour:
   - {fileID: 8371650932236124516, guid: cefb2666bf0b82448b87e05a2d1589e6, type: 3}
   - {fileID: 3821253142065967841, guid: e0c5896dbfa90504b8296293cfec8f89, type: 3}
   - {fileID: 8384778138159933250, guid: 4cb71767e543aeb439dc3ce2cc1cece3, type: 3}
+  allTails:
+  - {fileID: 8539047496660123989, guid: 200543386a93f904b8a1d1c4e017010d, type: 3}
+  - {fileID: 6124727632223853762, guid: 2085516023375cf4c82dae7534c59b51, type: 3}
+  - {fileID: 4903548077675408316, guid: 67cf2d9122cd411478da3cad31f24fec, type: 3}
+  - {fileID: 179010226241355888, guid: b875e497386be57468be78d5a9012cd1, type: 3}
 --- !u!4 &1154241267
 Transform:
   m_ObjectHideFlags: 0

@@ -40,6 +40,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMetronome()
     {
+        if (PlayerInfo.PI.isMuteBM == 1) return; 
+
         if (isStop == true) return; 
 
         bgmAudioSource.clip = metronome;
@@ -59,6 +61,8 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayTailIncrease(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)
@@ -83,6 +87,8 @@ public class SoundManager : MonoBehaviour
     
     public void PlayTailDecrease(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)
@@ -107,6 +113,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPickup(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)
@@ -132,6 +140,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayDeath(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)

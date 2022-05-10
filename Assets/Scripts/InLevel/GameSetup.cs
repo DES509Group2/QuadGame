@@ -188,7 +188,8 @@ public class GameSetup : MonoBehaviour
         {
             // GameEndUI.SetActive(true);
             EndScreenUI.SetActive(true); 
-            SoundManager.SM.StopAll(); 
+            SoundManager.SM.StopAll();
+            SoundManager.SM.PlayFailEndScreenMusic();
             isTimeFly = false;
 
             deathPanel.SetActive(false); 
@@ -201,7 +202,8 @@ public class GameSetup : MonoBehaviour
         {
             // GameWinUI.SetActive(true);
             EndScreenUI.SetActive(true); 
-            SoundManager.SM.StopAll(); 
+            SoundManager.SM.StopAll();
+            SoundManager.SM.PlayWinEndScreenMusic();
             isTimeFly = false;
 
             deathPanel.SetActive(false); 
@@ -210,6 +212,7 @@ public class GameSetup : MonoBehaviour
 
     public void DisconnectPlayer()
     {
+        UISoundManager.SMUI.PlayButtonClick();
         Destroy(PhotonRoom.room.gameObject);
         StartCoroutine(DisconnectAndLoad()); 
     }

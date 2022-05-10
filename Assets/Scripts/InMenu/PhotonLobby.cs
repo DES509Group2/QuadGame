@@ -100,6 +100,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void CreateRoom()
     {
+        UISoundManager.SMUI.PlayButtonClick();
         Debug.Log(PhotonNetwork.NickName + ": Tring to create a new Room");
 
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)maxRoomSize };
@@ -153,6 +154,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void OnLobbyButtonClicked()
     {
+        UISoundManager.SMUI.PlayButtonClick();
         menuUITwo.SetActive(false);
         menuUIThree.SetActive(true);
         if (nickName == "")

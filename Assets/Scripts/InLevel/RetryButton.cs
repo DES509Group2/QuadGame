@@ -35,6 +35,7 @@ public class RetryButton : MonoBehaviour
 
     public void OnclickRetry()
     {
+        SoundManager.SM.StopAll();
         PV.RPC("SomeOneReady", RpcTarget.All, PlayerInfo.PI.mySelectedCharacter);
     }
 

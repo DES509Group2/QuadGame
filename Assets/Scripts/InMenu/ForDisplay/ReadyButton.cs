@@ -8,6 +8,7 @@ public class ReadyButton : MonoBehaviour
 
     public void OnClickReady()
     {
+        UISoundManager.SMUI.PlayButtonClick();
         MenuController.MC.isReady = true;
         // MenuController.MC.isChecked[MenuController.MC.playersIndex] = 1; 
         PhotonRoom.room.PV.RPC("RPC_CheckBoxTrue", RpcTarget.AllBuffered, MenuController.MC.playersIndex); 

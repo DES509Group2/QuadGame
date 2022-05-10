@@ -8,11 +8,13 @@ public class CreditsUI : MonoBehaviour
 
     public void OnClickOpenCredits()
     {
+        UISoundManager.SMUI.PlayButtonClick();
         creditsUI.SetActive(true); 
     }
 
     public void OnClickCloseCredits()
     {
+        UISoundManager.SMUI.PlayButtonClick();
         creditsUI.SetActive(false); 
     }
 }

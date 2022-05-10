@@ -12,7 +12,7 @@ public class SoundManager : MonoBehaviour
     private AudioSource supportAudioSounce, supportAudioSounceLoop;  
 
     [SerializeField]
-    private AudioClip metronome, Level1Bgm;
+    private AudioClip metronome, level1Bgm, winBgm, failBgm;
     [SerializeField]
     private AudioClip tailIncreaseWhite, tailIncreaseRed, tailIncreaseBlue, tailIncreaseYellow;
     [SerializeField]
@@ -44,7 +44,7 @@ public class SoundManager : MonoBehaviour
 
         bgmAudioSource.clip = metronome;
         bgmAudioSource.Play();
-        bgmMusicSource.clip = Level1Bgm;
+        bgmMusicSource.clip = level1Bgm;
         bgmMusicSource.Play();
     }
 
@@ -54,7 +54,7 @@ public class SoundManager : MonoBehaviour
 
         bgmAudioSource.clip = metronome;
         bgmAudioSource.Pause();
-        bgmMusicSource.clip = Level1Bgm;
+        bgmMusicSource.clip = level1Bgm;
         bgmMusicSource.Pause();
     }
     public void PlayTailIncrease(int index)
@@ -155,6 +155,15 @@ public class SoundManager : MonoBehaviour
         // To reference in function: SoundManager.SM.PlayDeath(playerIndex); 
     }
 
+    public void PlayDoorUnlocked()
+    {
+        if (isStop == false)
+        {
+            supportAudioSounce.clip = doorUnlock;
+            supportAudioSounce.Play();
+        }
+    }
+
     public void StopAll()
     {
         audioSource.Stop();
@@ -165,12 +174,15 @@ public class SoundManager : MonoBehaviour
         isStop = true; 
     }
 
-    public void PlayDoorUnlocked()
+    public void PlayWinEndScreenMusic()
     {
-        if (isStop == false)
-        {
-            supportAudioSounce.clip = doorUnlock;
-            supportAudioSounce.Play();
-        }
+        bgmMusicSource.clip = winBgm;
+        bgmMusicSource.Play();
     }
+    public void PlayFailEndScreenMusic()
+    {
+        bgmMusicSource.clip = failBgm;
+        bgmMusicSource.Play();
+    }
+
 }

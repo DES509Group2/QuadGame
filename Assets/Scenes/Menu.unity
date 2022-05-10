@@ -4940,6 +4940,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mySelectedCharacter: 0
+  isMuteBM: 0
+  isMuteSE: 0
   allCharacters:
   - {fileID: 3738708645098495431, guid: 1b439f3274de6624aa4471f668183917, type: 3}
   - {fileID: 8371650932236124516, guid: cefb2666bf0b82448b87e05a2d1589e6, type: 3}
@@ -8583,7 +8585,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2038004666}
-        m_TargetAssemblyTypeName: PinkTickBox, Assembly-CSharp
+        m_TargetAssemblyTypeName: PinkTickBoxSE, Assembly-CSharp
         m_MethodName: OnClickPinkTick
         m_Mode: 1
         m_Arguments:
@@ -8641,7 +8643,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2038004661}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a7a9ce101711f4891f8350cb63def5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f5fdcf501f0a0948a34a27b968157a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OpenAudio: {fileID: 509209628}

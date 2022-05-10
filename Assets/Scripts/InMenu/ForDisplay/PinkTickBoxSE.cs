@@ -2,44 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PinkTickBox : MonoBehaviour
+public class PinkTickBoxSE : MonoBehaviour
 {
     public GameObject OpenAudio;
     public GameObject MuteAudio;
     public GameObject PinkTick;
 
-    private bool isMute;
+    private bool isMuteSE;
 
     private void Start()
     {
-        // isMute = false;
-        if (PlayerInfo.PI.isMuteBM == 0)
+        // isMuteSE = false;
+        if (PlayerInfo.PI.isMuteSE == 0)
         {
-            isMute = false;
+            isMuteSE = false;
         }
         else
         {
-            isMute = true; 
+            isMuteSE = true; 
         }
     }
 
     public void OnClickPinkTick()
     {
-        if (isMute)
+        if (isMuteSE)
         {
             MuteAudio.SetActive(false);
             OpenAudio.SetActive(true);
             PinkTick.SetActive(true);
-            isMute = false;
-            PlayerInfo.PI.isMuteBM = 0; 
+            isMuteSE = false;
+            PlayerInfo.PI.isMuteSE = 0;
         }
         else
         {
             MuteAudio.SetActive(true);
             OpenAudio.SetActive(false);
             PinkTick.SetActive(false);
-            isMute = true;
-            PlayerInfo.PI.isMuteBM = 1; 
+            isMuteSE = true;
+            PlayerInfo.PI.isMuteSE = 1; 
         }
     }
 }

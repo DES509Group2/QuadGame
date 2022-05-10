@@ -61,7 +61,8 @@ public class GameSetup : MonoBehaviour
     public Animator anim1;
     public Animator anim2;
 
-    public GameObject EndScreenUI; 
+    public GameObject EndScreenUI;
+    private bool isEndMusicPlaying;
 
     private void OnEnable()
     {
@@ -97,6 +98,7 @@ public class GameSetup : MonoBehaviour
         wonPlayers = 0;
 
         isEnd = false;
+        isEndMusicPlaying = false;
 
         isWhiteWin = false;
         isRedWin = false;
@@ -189,7 +191,11 @@ public class GameSetup : MonoBehaviour
             // GameEndUI.SetActive(true);
             EndScreenUI.SetActive(true); 
             SoundManager.SM.StopAll();
-            SoundManager.SM.PlayFailEndScreenMusic();
+            if (isEndMusicPlaying == false)
+            {
+                SoundManager.SM.PlayFailEndScreenMusic();
+                isEndMusicPlaying = true;
+            }
             isTimeFly = false;
 
             deathPanel.SetActive(false); 
@@ -203,7 +209,13 @@ public class GameSetup : MonoBehaviour
             // GameWinUI.SetActive(true);
             EndScreenUI.SetActive(true); 
             SoundManager.SM.StopAll();
-            SoundManager.SM.PlayWinEndScreenMusic();
+
+            if (isEndMusicPlaying == false)
+            {
+                SoundManager.SM.PlayWinEndScreenMusic();
+                isEndMusicPlaying = true;
+            }
+            //
             isTimeFly = false;
 
             deathPanel.SetActive(false); 
@@ -212,7 +224,7 @@ public class GameSetup : MonoBehaviour
 
     public void DisconnectPlayer()
     {
-        UISoundManager.SMUI.PlayButtonClick();
+        SoundManager.SM.PlayButtonClick();
         Destroy(PhotonRoom.room.gameObject);
         StartCoroutine(DisconnectAndLoad()); 
     }

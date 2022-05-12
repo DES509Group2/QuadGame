@@ -9,8 +9,11 @@ public class PlayerInfo : MonoBehaviour
     public static PlayerInfo PI;
 
     public int mySelectedCharacter;
+    public int isMuteBM; 
+    public int isMuteSE; 
 
     public GameObject[] allCharacters;
+    public GameObject[] allTails; 
 
     private void OnEnable()
     {
@@ -40,6 +43,26 @@ public class PlayerInfo : MonoBehaviour
         {
             mySelectedCharacter = 0;
             PlayerPrefs.SetInt("MyCharacter", mySelectedCharacter); 
+        }
+
+        if(PlayerPrefs.HasKey("IsMuteBM"))
+        {
+            isMuteBM = PlayerPrefs.GetInt("IsMuteBM");
+        }
+        else
+        {
+            isMuteBM = 0;
+            PlayerPrefs.SetInt("IsMuteBM", isMuteBM); 
+        }
+
+        if(PlayerPrefs.HasKey("IsMuteSE"))
+        {
+            isMuteSE = PlayerPrefs.GetInt("IsMuteSE"); 
+        }
+        else
+        {
+            isMuteSE = 0;
+            PlayerPrefs.SetInt("IsMuteSE", isMuteSE); 
         }
     }
 

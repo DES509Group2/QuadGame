@@ -7,12 +7,12 @@ public class SoundManager : MonoBehaviour
     public static SoundManager SM; 
 
     [SerializeField]
-    private AudioSource audioSource, bgmAudioSource; 
+    private AudioSource audioSource, bgmAudioSource, bgmMusicSource; 
     [SerializeField]
     private AudioSource supportAudioSounce, supportAudioSounceLoop;  
 
     [SerializeField]
-    private AudioClip metronome;
+    private AudioClip metronome, level1Bgm, winBgm, failBgm;
     [SerializeField]
     private AudioClip tailIncreaseWhite, tailIncreaseRed, tailIncreaseBlue, tailIncreaseYellow;
     [SerializeField]
@@ -22,6 +22,9 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private AudioClip deathWhite, deathRed, deathBlue, deathYellow;
+
+    [SerializeField]
+    private AudioClip doorUnlock, buttonClick;
 
     private bool isStop; 
 
@@ -37,10 +40,14 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMetronome()
     {
+        if (PlayerInfo.PI.isMuteBM == 1) return; 
+
         if (isStop == true) return; 
 
         bgmAudioSource.clip = metronome;
-        bgmAudioSource.Play(); 
+        bgmAudioSource.Play();
+        bgmMusicSource.clip = level1Bgm;
+        bgmMusicSource.Play();
     }
 
     public void PauseMetronome()
@@ -49,9 +56,13 @@ public class SoundManager : MonoBehaviour
 
         bgmAudioSource.clip = metronome;
         bgmAudioSource.Pause();
+        bgmMusicSource.clip = level1Bgm;
+        bgmMusicSource.Pause();
     }
     public void PlayTailIncrease(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)
@@ -76,6 +87,8 @@ public class SoundManager : MonoBehaviour
     
     public void PlayTailDecrease(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)
@@ -100,6 +113,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPickup(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)
@@ -122,9 +137,10 @@ public class SoundManager : MonoBehaviour
         supportAudioSounce.Play(); 
     }
 
-
     public void PlayDeath(int index)
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return; 
+
         if (isStop == true) return;
 
         switch (index)
@@ -148,13 +164,45 @@ public class SoundManager : MonoBehaviour
         // To reference in function: SoundManager.SM.PlayDeath(playerIndex); 
     }
 
+    public void PlayDoorUnlocked()
+    {
+        if (PlayerInfo.PI.isMuteSE == 1) return;
+        if (isStop == false)
+        {
+            supportAudioSounce.clip = doorUnlock;
+            supportAudioSounce.Play();
+        }
+    }
+
     public void StopAll()
     {
         audioSource.Stop();
         bgmAudioSource.Stop();
+        bgmMusicSource.Stop();
         supportAudioSounce.Stop();
         supportAudioSounceLoop.Stop();
         isStop = true; 
     }
 
+    public void PlayWinEndScreenMusic()
+    {
+        if (PlayerInfo.PI.isMuteBM == 1) return;
+
+        bgmMusicSource.clip = winBgm;
+        bgmMusicSource.Play();
+    }
+    public void PlayFailEndScreenMusic()
+    {
+        if (PlayerInfo.PI.isMuteBM == 1) return;
+
+        bgmMusicSource.clip = failBgm;
+        bgmMusicSource.Play();
+    }
+
+    public void PlayButtonClick()
+    {
+        if (PlayerInfo.PI.isMuteSE == 1) return;
+        audioSource.clip = buttonClick;
+        audioSource.Play();
+    }
 }

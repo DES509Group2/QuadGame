@@ -8,6 +8,7 @@ public class ControlsReturn : MonoBehaviour
 
     public void OnclickMainMenu()
     {
+        UISoundManager.SMUI.PlayButtonClick();
         ControlsPage.SetActive(false); 
     }
 }

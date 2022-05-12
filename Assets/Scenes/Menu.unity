@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0629aaa59c9cdb4292b6399b791cc24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creditsUI: {fileID: 2020556399}
+  creditsUI: {fileID: 0}
 --- !u!1 &214755856
 GameObject:
   m_ObjectHideFlags: 0
@@ -8894,9 +8894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5fdcf501f0a0948a34a27b968157a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpenAudio: {fileID: 509209628}
-  MuteAudio: {fileID: 379739834}
-  PinkTick: {fileID: 1922516221}
+  OpenAudio: {fileID: 0}
+  MuteAudio: {fileID: 0}
+  PinkTick: {fileID: 0}
 --- !u!1 &2064001158
 GameObject:
   m_ObjectHideFlags: 0

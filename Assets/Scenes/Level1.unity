@@ -14689,9 +14689,9 @@ MonoBehaviour:
   supportAudioSounce: {fileID: 1392019948}
   supportAudioSounceLoop: {fileID: 1392019949}
   metronome: {fileID: 8300000, guid: 92e8fa4cdf6226842b1087d3c40271ca, type: 3}
-  level1Bgm: {fileID: 8300000, guid: 7ed268ee317d1cc4a8f3475beef0044d, type: 3}
-  winBgm: {fileID: 8300000, guid: f26bd694ffc77d84e9c6c3af09a90864, type: 3}
-  failBgm: {fileID: 8300000, guid: 4905f8da7ccdb2a40aa164cbb549f1ec, type: 3}
+  level1Bgm: {fileID: 0}
+  winBgm: {fileID: 0}
+  failBgm: {fileID: 0}
   tailIncreaseWhite: {fileID: 8300000, guid: 602db73ec693d784c8db32f0e554a775, type: 3}
   tailIncreaseRed: {fileID: 8300000, guid: 93055df0b414e3b418a4315bcd421df5, type: 3}
   tailIncreaseBlue: {fileID: 8300000, guid: b704d4d57afd11a4fb5489b24a2a2832, type: 3}
@@ -14709,7 +14709,6 @@ MonoBehaviour:
   deathBlue: {fileID: 8300000, guid: a13552d1853bdea4c855a5682f77597c, type: 3}
   deathYellow: {fileID: 8300000, guid: 44b2cda5482db7d4b94a48ed288c2d1d, type: 3}
   doorUnlock: {fileID: 8300000, guid: 76cc58b56de79d04996a9218a7b5c8c4, type: 3}
-  buttonClick: {fileID: 8300000, guid: 86bd849ad4cd9b74abc0fae9a57df05a, type: 3}
 --- !u!4 &1392019946
 Transform:
   m_ObjectHideFlags: 0

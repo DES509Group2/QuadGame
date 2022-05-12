@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
     private AudioClip deathWhite, deathRed, deathBlue, deathYellow;
 
     [SerializeField]
-    private AudioClip doorUnlock, buttonClick;
+    private AudioClip doorUnlock;
 
     private bool isStop; 
 
@@ -137,6 +137,7 @@ public class SoundManager : MonoBehaviour
         supportAudioSounce.Play(); 
     }
 
+
     public void PlayDeath(int index)
     {
         if (PlayerInfo.PI.isMuteSE == 1) return; 
@@ -166,7 +167,6 @@ public class SoundManager : MonoBehaviour
 
     public void PlayDoorUnlocked()
     {
-        if (PlayerInfo.PI.isMuteSE == 1) return;
         if (isStop == false)
         {
             supportAudioSounce.clip = doorUnlock;
@@ -186,23 +186,13 @@ public class SoundManager : MonoBehaviour
 
     public void PlayWinEndScreenMusic()
     {
-        if (PlayerInfo.PI.isMuteBM == 1) return;
-
         bgmMusicSource.clip = winBgm;
         bgmMusicSource.Play();
     }
     public void PlayFailEndScreenMusic()
     {
-        if (PlayerInfo.PI.isMuteBM == 1) return;
-
         bgmMusicSource.clip = failBgm;
         bgmMusicSource.Play();
     }
 
-    public void PlayButtonClick()
-    {
-        if (PlayerInfo.PI.isMuteSE == 1) return;
-        audioSource.clip = buttonClick;
-        audioSource.Play();
-    }
 }

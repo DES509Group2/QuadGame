@@ -31,8 +31,7 @@ public class PinkTickBox : MonoBehaviour
             OpenAudio.SetActive(true);
             PinkTick.SetActive(true);
             isMute = false;
-            PlayerInfo.PI.isMuteBM = 0;
-            UISoundManager.SMUI.PlayMainMenuBGM();
+            PlayerInfo.PI.isMuteBM = 0; 
         }
         else
         {
@@ -40,8 +39,7 @@ public class PinkTickBox : MonoBehaviour
             OpenAudio.SetActive(false);
             PinkTick.SetActive(false);
             isMute = true;
-            PlayerInfo.PI.isMuteBM = 1;
-            UISoundManager.SMUI.StopMainMenuBGM();
+            PlayerInfo.PI.isMuteBM = 1; 
         }
     }
 }

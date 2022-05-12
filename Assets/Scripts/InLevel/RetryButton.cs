@@ -35,7 +35,7 @@ public class RetryButton : MonoBehaviour
 
     public void OnclickRetry()
     {
-        SoundManager.SM.PlayButtonClick();
+        SoundManager.SM.StopAll();
         PV.RPC("SomeOneReady", RpcTarget.All, PlayerInfo.PI.mySelectedCharacter);
     }
 
@@ -73,7 +73,6 @@ public class RetryButton : MonoBehaviour
         }
         if (numberOk == 4)
         {
-            SoundManager.SM.StopAll();
             PhotonRoom.room.StartGame(); 
         }
     }

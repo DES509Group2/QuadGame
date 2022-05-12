@@ -28,20 +28,17 @@ public class UISoundManager : MonoBehaviour
 
     public void PlayMainMenuBGM()
     {
-        if (PlayerInfo.PI.isMuteBM == 1) return;
         bgmMusicSource.clip = mainMenuMusic;
         bgmMusicSource.Play();
     }
     public void PlayButtonClick()
     {
-        if (PlayerInfo.PI.isMuteSE == 1) return;
         uiAudioSource.clip = buttonClick;
         uiAudioSource.Play();
     }
 
     public void PlayCharacterSelect(int index)
     {
-        if (PlayerInfo.PI.isMuteSE == 1) return;
         switch (index)
         {
             case 0:
@@ -65,10 +62,6 @@ public class UISoundManager : MonoBehaviour
     public void StopAll()
     {
         uiAudioSource.Stop();
-        StopMainMenuBGM();
-    }
-    public void StopMainMenuBGM()
-    {
         bgmMusicSource.Stop();
     }
 }

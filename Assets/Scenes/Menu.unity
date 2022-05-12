@@ -517,11 +517,11 @@ MonoBehaviour:
   bgmMusicSource: {fileID: 89544251}
   uiAudioSource: {fileID: 89544250}
   mainMenuMusic: {fileID: 8300000, guid: 2949b26aa135bd84fb40d62adf07acac, type: 3}
-  buttonClick: {fileID: 8300000, guid: 86bd849ad4cd9b74abc0fae9a57df05a, type: 3}
   selectWhite: {fileID: 8300000, guid: 602db73ec693d784c8db32f0e554a775, type: 3}
   selectRed: {fileID: 8300000, guid: 93055df0b414e3b418a4315bcd421df5, type: 3}
   selectBlue: {fileID: 8300000, guid: b704d4d57afd11a4fb5489b24a2a2832, type: 3}
   selectYellow: {fileID: 8300000, guid: 6a80082af4aa3a144ae78f988f6cb3fc, type: 3}
+  buttonClick: {fileID: 8300000, guid: 86bd849ad4cd9b74abc0fae9a57df05a, type: 3}
 --- !u!4 &89544253
 Transform:
   m_ObjectHideFlags: 0

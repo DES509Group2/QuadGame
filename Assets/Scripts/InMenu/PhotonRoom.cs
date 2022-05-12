@@ -159,12 +159,10 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public void StartGame()
     {
-        UISoundManager.SMUI.PlayButtonClick();
         isGameLoaded = true;
         if (!PhotonNetwork.IsMasterClient)
             return;
-        PhotonNetwork.LoadLevel(1);
-        UISoundManager.SMUI.StopAll();
+        PhotonNetwork.LoadLevel(1); 
     }
 
     void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)

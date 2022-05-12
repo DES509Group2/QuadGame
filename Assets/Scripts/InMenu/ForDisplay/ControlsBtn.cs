@@ -8,7 +8,6 @@ public class ControlsBtn : MonoBehaviour
 
     public void OnClickControls()
     {
-        UISoundManager.SMUI.PlayButtonClick();
         ControlsPage.SetActive(true); 
     }
 }

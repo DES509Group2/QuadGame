@@ -12,15 +12,7 @@ public class PinkTickBox : MonoBehaviour
 
     private void Start()
     {
-        // isMute = false;
-        if (PlayerInfo.PI.isMuteBM == 0)
-        {
-            isMute = false;
-        }
-        else
-        {
-            isMute = true; 
-        }
+        isMute = false; 
     }
 
     public void OnClickPinkTick()
@@ -30,18 +22,14 @@ public class PinkTickBox : MonoBehaviour
             MuteAudio.SetActive(false);
             OpenAudio.SetActive(true);
             PinkTick.SetActive(true);
-            isMute = false;
-            PlayerInfo.PI.isMuteBM = 0;
-            UISoundManager.SMUI.PlayMainMenuBGM();
+            isMute = false; 
         }
         else
         {
             MuteAudio.SetActive(true);
             OpenAudio.SetActive(false);
             PinkTick.SetActive(false);
-            isMute = true;
-            PlayerInfo.PI.isMuteBM = 1;
-            UISoundManager.SMUI.StopMainMenuBGM();
+            isMute = true; 
         }
     }
 }

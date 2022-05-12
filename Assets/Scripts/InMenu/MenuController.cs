@@ -11,8 +11,6 @@ public class MenuController : MonoBehaviour
     public GameObject menuUITwo;
     public GameObject menuUIThree; 
     public GameObject startButton;
-    public GameObject ControlUIOne;
-    public GameObject CreditUIOne;
 
     public GameObject changeNameButton;
     public GameObject openCreateRoomButton;
@@ -22,10 +20,7 @@ public class MenuController : MonoBehaviour
     public int playersIndex;
     public int[] isChecked;
 
-    public Text readyPlayers;
-
-    [SerializeField]
-    private int playerIndex;
+    public Text readyPlayers; 
 
     private void OnEnable()
     {
@@ -39,9 +34,6 @@ public class MenuController : MonoBehaviour
     {
         isReady = false;
         isChecked = new int [4] { 0, 0, 0, 0 };
-        UISoundManager.SMUI.PlayMainMenuBGM();
-
-        playerIndex = PlayerInfo.PI.mySelectedCharacter;
     }
 
     private void Update()
@@ -64,20 +56,17 @@ public class MenuController : MonoBehaviour
 
     public void OnClickChangeName()
     {
-        ButtonSFX();
         menuUIThree.SetActive(false); 
         menuUITwo.SetActive(true); 
     }
 
     public void OpenRoomPanel()
     {
-        ButtonSFX();
         createRoomPanel.SetActive(true); 
     }
 
     public void CloseRoomPanel()
     {
-        ButtonSFX();
         createRoomPanel.SetActive(false); 
     }
 
@@ -88,14 +77,12 @@ public class MenuController : MonoBehaviour
             PlayerInfo.PI.mySelectedCharacter = whichCharacter;
             PlayerPrefs.SetInt("MyCharacter", whichCharacter);
 
-            PhotonRoom.room.ChangeListColor(PhotonRoom.room.myNumberInRoom - 1, whichCharacter);
-            UISoundManager.SMUI.PlayCharacterSelect(whichCharacter);
+            PhotonRoom.room.ChangeListColor(PhotonRoom.room.myNumberInRoom - 1, whichCharacter); 
         }
     }
 
     public void OnStartButtonClicked()
     {
-        ButtonSFX();
         startButton.SetActive(false);
         menuUIOne.SetActive(false);
         menuUITwo.SetActive(true); 
@@ -103,39 +90,6 @@ public class MenuController : MonoBehaviour
 
     public void OnExitButtonClicked()
     {
-        ButtonSFX();
         Application.Quit(); 
-    }
-
-    public void OpenControlMenu()
-    {
-        ButtonSFX();
-        menuUIOne.SetActive(false);
-        ControlUIOne.SetActive(true);
-    }
-    public void OpenCreditMenu()
-    {
-        ButtonSFX();
-        menuUIOne.SetActive(false);
-        CreditUIOne.SetActive(true);
-    }
-    //Control Menu Buttons
-    public void CloseControlMenu()
-    {
-        ButtonSFX();
-        ControlUIOne.SetActive(false);
-        menuUIOne.SetActive(true);        
-    }
-    //Credit Menu Buttons
-    public void CloseCreditMenu()
-    {
-        ButtonSFX();
-        CreditUIOne.SetActive(false);
-        menuUIOne.SetActive(true);        
-    }
-
-    public void ButtonSFX()
-    {
-        UISoundManager.SMUI.PlayButtonClick();
     }
 }

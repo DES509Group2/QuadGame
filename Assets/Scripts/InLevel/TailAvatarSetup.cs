@@ -21,7 +21,7 @@ public class TailAvatarSetup : MonoBehaviour
     [PunRPC]
     void RPC_AddTail(int whichTail)
     {
-        myTail = Instantiate(PlayerInfo.PI.allTails[whichTail], transform.position, transform.rotation, transform); 
+        myTail = Instantiate(PlayerInfo.PI.allCharacters[whichTail], transform.position, transform.rotation, transform); 
     }
 
 }

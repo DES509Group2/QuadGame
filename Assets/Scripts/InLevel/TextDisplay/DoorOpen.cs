@@ -7,18 +7,35 @@ public class DoorOpen : MonoBehaviour
     public GameObject doorOpen;
     public GameObject doorClose;
 
+    private bool isDoorLocked;
+
+    private void Start()
+    {
+        isDoorLocked = false;
+    }
+
     private void Update()
     {
         if (GameSetup.GS.groupScore >= GameSetup.GS.winScore)
         {
-            SoundManager.SM.PlayDoorUnlocked();
-            doorClose.SetActive(false); 
+            PlayDoorAudio();
+            doorClose.SetActive(false);
             doorOpen.SetActive(true);
         }
         else
         {
             doorOpen.SetActive(false);
-            doorClose.SetActive(true); 
+            doorClose.SetActive(true);
         }
     }
+
+    private void PlayDoorAudio()
+    {
+        if (isDoorLocked == false)
+        {
+            SoundManager.SM.PlayDoorUnlocked();
+            isDoorLocked = true;
+        }
+    }
+
 }

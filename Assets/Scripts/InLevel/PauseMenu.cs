@@ -17,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            SoundManager.SM.PlayButtonClick();
             PauseMenuUI.SetActive(true);
             GameObject.Find("SoundManager").GetComponent<SoundManager>().PauseMetronome();
             Time.timeScale = 0;
@@ -27,16 +28,19 @@ public class PauseMenu : MonoBehaviour
 
     public void gameResume()
     {
+        SoundManager.SM.PlayButtonClick();
         PauseMenuUI.SetActive(false);
         GameObject.Find("SoundManager").GetComponent<SoundManager>().PlayMetronome();
         Time.timeScale = 1;
     }
     public void restartGame()
     {
+        SoundManager.SM.PlayButtonClick();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void closeRoom()
     {
+        SoundManager.SM.PlayButtonClick();
         SceneManager.LoadScene("Menu");
     }
 

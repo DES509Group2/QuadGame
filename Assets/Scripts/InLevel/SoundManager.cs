@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager SM; 
+    public static SoundManager SM;
 
     [SerializeField]
-    private AudioSource audioSource, bgmAudioSource, bgmMusicSource; 
+    private AudioSource audioSource, bgmAudioSource, bgmMusicSource;
     [SerializeField]
-    private AudioSource supportAudioSounce, supportAudioSounceLoop;  
+    private AudioSource supportAudioSounce, supportAudioSounceLoop;
 
     [SerializeField]
     private AudioClip metronome, level1Bgm, winBgm, failBgm;
@@ -24,9 +24,9 @@ public class SoundManager : MonoBehaviour
     private AudioClip deathWhite, deathRed, deathBlue, deathYellow;
 
     [SerializeField]
-    private AudioClip doorUnlock;
+    private AudioClip doorUnlock, buttonClick;
 
-    private bool isStop; 
+    private bool isStop;
 
     private void OnEnable()
     {
@@ -35,14 +35,14 @@ public class SoundManager : MonoBehaviour
             SoundManager.SM = this;
         }
 
-        isStop = false; 
+        isStop = false;
     }
 
     public void PlayMetronome()
     {
-        if (PlayerInfo.PI.isMuteBM == 1) return; 
+        if (PlayerInfo.PI.isMuteBM == 1) return;
 
-        if (isStop == true) return; 
+        if (isStop == true) return;
 
         bgmAudioSource.clip = metronome;
         bgmAudioSource.Play();
@@ -61,7 +61,7 @@ public class SoundManager : MonoBehaviour
     }
     public void PlayTailIncrease(int index)
     {
-        if (PlayerInfo.PI.isMuteSE == 1) return; 
+        if (PlayerInfo.PI.isMuteSE == 1) return;
 
         if (isStop == true) return;
 
@@ -74,20 +74,20 @@ public class SoundManager : MonoBehaviour
                 audioSource.clip = tailIncreaseRed;
                 break;
             case 2:
-                audioSource.clip = tailIncreaseBlue; 
+                audioSource.clip = tailIncreaseBlue;
                 break;
             case 3:
-                audioSource.clip = tailIncreaseYellow; 
+                audioSource.clip = tailIncreaseYellow;
                 break;
             default:
                 break;
         }
-        audioSource.Play(); 
+        audioSource.Play();
     }
-    
+
     public void PlayTailDecrease(int index)
     {
-        if (PlayerInfo.PI.isMuteSE == 1) return; 
+        if (PlayerInfo.PI.isMuteSE == 1) return;
 
         if (isStop == true) return;
 
@@ -113,7 +113,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPickup(int index)
     {
-        if (PlayerInfo.PI.isMuteSE == 1) return; 
+        if (PlayerInfo.PI.isMuteSE == 1) return;
 
         if (isStop == true) return;
 
@@ -134,13 +134,12 @@ public class SoundManager : MonoBehaviour
             default:
                 break;
         }
-        supportAudioSounce.Play(); 
+        supportAudioSounce.Play();
     }
-
 
     public void PlayDeath(int index)
     {
-        if (PlayerInfo.PI.isMuteSE == 1) return; 
+        if (PlayerInfo.PI.isMuteSE == 1) return;
 
         if (isStop == true) return;
 
@@ -167,6 +166,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayDoorUnlocked()
     {
+        if (PlayerInfo.PI.isMuteSE == 1) return;
         if (isStop == false)
         {
             supportAudioSounce.clip = doorUnlock;
@@ -181,18 +181,28 @@ public class SoundManager : MonoBehaviour
         bgmMusicSource.Stop();
         supportAudioSounce.Stop();
         supportAudioSounceLoop.Stop();
-        isStop = true; 
+        isStop = true;
     }
 
     public void PlayWinEndScreenMusic()
     {
+        if (PlayerInfo.PI.isMuteBM == 1) return;
+        //print("Win I'm playing");
         bgmMusicSource.clip = winBgm;
         bgmMusicSource.Play();
     }
     public void PlayFailEndScreenMusic()
     {
+        if (PlayerInfo.PI.isMuteBM == 1) return;
+       // print("Fail I'm playing");
         bgmMusicSource.clip = failBgm;
         bgmMusicSource.Play();
     }
 
+    public void PlayButtonClick()
+    {
+        if (PlayerInfo.PI.isMuteSE == 1) return;
+        audioSource.clip = buttonClick;
+        audioSource.Play();
+    }
 }

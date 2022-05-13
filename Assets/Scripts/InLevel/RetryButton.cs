@@ -21,7 +21,7 @@ public class RetryButton : MonoBehaviour
     public GameObject RedTick;
     public GameObject BlueTick;
     public GameObject YellowTick;
-    public GameObject WhiteTick; 
+    public GameObject WhiteTick;
 
     private void OnEnable()
     {
@@ -30,12 +30,12 @@ public class RetryButton : MonoBehaviour
         isBlueOk = false;
         isYellowOk = false;
         isWhiteOk = false;
-        numberOk = 0;  
+        numberOk = 0;
     }
 
     public void OnclickRetry()
     {
-        SoundManager.SM.StopAll();
+        SoundManager.SM.PlayButtonClick();
         PV.RPC("SomeOneReady", RpcTarget.All, PlayerInfo.PI.mySelectedCharacter);
     }
 
@@ -48,24 +48,24 @@ public class RetryButton : MonoBehaviour
                 if (!isWhiteOk) numberOk++;
                 isWhiteOk = true;
                 WhitePoint.SetActive(true);
-                WhiteTick.SetActive(true); 
+                WhiteTick.SetActive(true);
                 break;
             case 1:
                 if (!isRedOk) numberOk++;
                 isRedOk = true;
                 RedPoint.SetActive(true);
-                RedTick.SetActive(true); 
+                RedTick.SetActive(true);
                 break;
             case 2:
                 if (!isBlueOk) numberOk++;
                 BluePoint.SetActive(true);
-                BlueTick.SetActive(true); 
+                BlueTick.SetActive(true);
                 isBlueOk = true;
                 break;
             case 3:
                 if (!isYellowOk) numberOk++;
                 YellowPoint.SetActive(true);
-                YellowTick.SetActive(true); 
+                YellowTick.SetActive(true);
                 isYellowOk = true;
                 break;
             default:
@@ -73,7 +73,8 @@ public class RetryButton : MonoBehaviour
         }
         if (numberOk == 4)
         {
-            PhotonRoom.room.StartGame(); 
+            SoundManager.SM.StopAll();
+            PhotonRoom.room.StartGame();
         }
     }
 }

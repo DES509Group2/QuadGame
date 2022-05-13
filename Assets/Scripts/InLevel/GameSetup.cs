@@ -11,9 +11,9 @@ public class GameSetup : MonoBehaviour
 
     public Text lengthDisplay;
     public Text scoreDisplay;
-    public Text groupScoreDisplay; 
+    public Text groupScoreDisplay;
 
-    public int nextPlayersTeam; 
+    public int nextPlayersTeam;
     public Transform[] spawnPointsTeamOne;
     public Transform[] spawnPointsTeamTwo;
     public Transform[] spawnPointsTeamThree;
@@ -45,13 +45,13 @@ public class GameSetup : MonoBehaviour
     public int[] allPlayerScore;
     public int[] otherPlayerScore;
 
-    public int failedPlayers; 
+    public int failedPlayers;
     public int wonPlayers;
 
     public bool isWhiteWin;
     public bool isRedWin;
     public bool isBlueWin;
-    public bool isYellowWin; 
+    public bool isYellowWin;
 
     public GameObject deathPanel;
 
@@ -61,13 +61,14 @@ public class GameSetup : MonoBehaviour
     public Animator anim1;
     public Animator anim2;
 
-    public GameObject EndScreenUI; 
+    public GameObject EndScreenUI;
+    private bool isEndMusicPlaying;
 
     private void OnEnable()
     {
         if (GameSetup.GS == null)
         {
-            GameSetup.GS = this; 
+            GameSetup.GS = this;
         }
     }
 
@@ -86,7 +87,7 @@ public class GameSetup : MonoBehaviour
         survivalTime = 0;
         isTimeFly = true;
 
-        allPlayerScore = new int [4] { 0, 0, 0, 0 };
+        allPlayerScore = new int[4] { 0, 0, 0, 0 };
         otherPlayerScore = new int[3] { 0, 0, 0 };
 
         failedPlayers = 0;
@@ -97,11 +98,12 @@ public class GameSetup : MonoBehaviour
         wonPlayers = 0;
 
         isEnd = false;
+        isEndMusicPlaying = false;
 
         isWhiteWin = false;
         isRedWin = false;
         isBlueWin = false;
-        isYellowWin = false; 
+        isYellowWin = false;
     }
 
     private void Update()
@@ -111,24 +113,24 @@ public class GameSetup : MonoBehaviour
 
         if (playerLength <= 0 && !isEnd)
         {
-            deathPanel.SetActive(true); 
+            deathPanel.SetActive(true);
         }
-        
+
         CheckGameFailed();
         RefreshScore();
-        RefreshMax(); 
+        RefreshMax();
     }
 
     void RefreshMax()
     {
         if (playerLength > maxPlayerLength)
         {
-            maxPlayerLength = playerLength; 
+            maxPlayerLength = playerLength;
         }
 
         if (currentCombo > maxCombo)
         {
-            maxCombo = currentCombo; 
+            maxCombo = currentCombo;
         }
     }
 
@@ -136,19 +138,19 @@ public class GameSetup : MonoBehaviour
     {
         scoreDisplay.text = playerScore.ToString();
         groupScoreDisplay.text = groupScore.ToString();
-        RefreshOtherPlayerScore(); 
+        RefreshOtherPlayerScore();
     }
 
     void RefreshOtherPlayerScore()
     {
         int tempIndex = PlayerInfo.PI.mySelectedCharacter;
-        int j = 0; 
+        int j = 0;
         for (int i = 0; i < 4; i++)
         {
-           if (i != tempIndex)
+            if (i != tempIndex)
             {
                 otherPlayerScore[j] = allPlayerScore[i];
-                j++; 
+                j++;
             }
         }
     }
@@ -156,26 +158,26 @@ public class GameSetup : MonoBehaviour
     public void OnClickEndOneToTwo()
     {
         GameEndUIOne.SetActive(false);
-        GameEndUITwo.SetActive(true); 
+        GameEndUITwo.SetActive(true);
     }
     public void OnClickEndTwoToThree()
     {
         GameEndUITwo.SetActive(false);
-        GameEndUIThree.SetActive(true); 
+        GameEndUIThree.SetActive(true);
     }
     public void OnClickEndThreeToRestart()
     {
-        DisconnectPlayer(); 
+        DisconnectPlayer();
     }
     public void OnClickWinOneToTwo()
     {
         GameWinUIOne.SetActive(false);
-        GameWinUITwo.SetActive(true); 
+        GameWinUITwo.SetActive(true);
     }
     public void OnClickWinTwoToThree()
     {
         GameWinUITwo.SetActive(false);
-        GameWinUIThree.SetActive(true); 
+        GameWinUIThree.SetActive(true);
     }
     public void OnClickWinThreeToNextLevel()
     {
@@ -184,37 +186,50 @@ public class GameSetup : MonoBehaviour
 
     void CheckGameFailed()
     {
-        if (failedPlayers == PhotonNetwork.PlayerList.Length) 
+        if (failedPlayers == PhotonNetwork.PlayerList.Length)
         {
             // GameEndUI.SetActive(true);
-            EndScreenUI.SetActive(true); 
+            EndScreenUI.SetActive(true);
             SoundManager.SM.StopAll();
-            SoundManager.SM.PlayFailEndScreenMusic();
+           // print(isEndMusicPlaying);
+            if (isEndMusicPlaying == false)
+            {
+              //  print("CallFail");
+                SoundManager.SM.PlayFailEndScreenMusic();
+                isEndMusicPlaying = true;
+            }
             isTimeFly = false;
 
-            deathPanel.SetActive(false); 
+            deathPanel.SetActive(false);
         }
     }
 
-    public void CheckGameWin() 
+    public void CheckGameWin()
     {
         if (failedPlayers + wonPlayers == PhotonNetwork.PlayerList.Length && groupScore >= winScore)
         {
             // GameWinUI.SetActive(true);
-            EndScreenUI.SetActive(true); 
+            EndScreenUI.SetActive(true);
             SoundManager.SM.StopAll();
-            SoundManager.SM.PlayWinEndScreenMusic();
+            print(isEndMusicPlaying);
+            if (isEndMusicPlaying == false)
+            {
+               // print("CallWin");
+                SoundManager.SM.PlayWinEndScreenMusic();
+                isEndMusicPlaying = true;
+            }
+            //
             isTimeFly = false;
 
-            deathPanel.SetActive(false); 
+            deathPanel.SetActive(false);
         }
     }
 
     public void DisconnectPlayer()
     {
-        UISoundManager.SMUI.PlayButtonClick();
+        SoundManager.SM.PlayButtonClick();
         Destroy(PhotonRoom.room.gameObject);
-        StartCoroutine(DisconnectAndLoad()); 
+        StartCoroutine(DisconnectAndLoad());
     }
 
     IEnumerator DisconnectAndLoad()
@@ -225,14 +240,14 @@ public class GameSetup : MonoBehaviour
         while (PhotonNetwork.InRoom)
             yield return null;
         PhotonNetwork.AutomaticallySyncScene = false;
-        SceneManager.LoadScene(0); 
+        SceneManager.LoadScene(0);
     }
 
     public void UpdateTeam()
     {
         if (nextPlayersTeam < 4)
         {
-            nextPlayersTeam++; 
+            nextPlayersTeam++;
         }
         else
         {
@@ -242,8 +257,8 @@ public class GameSetup : MonoBehaviour
 
     public void PlayCombo()
     {
-        currentCombo++; 
-        ComboUI.SetActive(true); 
+        currentCombo++;
+        ComboUI.SetActive(true);
     }
 
     public string GetSurvivalTime()
@@ -253,7 +268,7 @@ public class GameSetup : MonoBehaviour
         int second = (int)(survivalTime - hour * 3600 - minute * 60);
         int millisecond = (int)((survivalTime - (int)survivalTime) * 1000);
 
-        return string.Format("{0:D2}:{1:D2}:{2:D2}", minute, second, millisecond); 
+        return string.Format("{0:D2}:{1:D2}:{2:D2}", minute, second, millisecond);
     }
 
     IEnumerator startAnim()
